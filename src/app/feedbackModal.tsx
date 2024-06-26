@@ -25,13 +25,15 @@ interface FeedbackModalProps {
 }
 
 const FeedbackModal: React.FC<FeedbackModalProps> = ({ isOpen, onClose }) => {
-  const [nps, setNps] = useState<string>("");
+  const [nps, setNps] = useState<number | null>(null);
   const [futureTopic, setFutureTopic] = useState<string>("");
   const [improvement, setImprovement] = useState<string>("");
   const [socialMedia, setSocialMedia] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (nps === null) return; // Prevent submission if no NPS is selected
 
     const feedbackData = {
       nps,
@@ -53,21 +55,24 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({ isOpen, onClose }) => {
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="nps" className="col-span-4">
+            <div className="space-y-2">
+              <Label htmlFor="nps" className="block">
                 How likely are you to recommend this course to a colleague?
                 (0-10)
               </Label>
-              <Input
-                id="nps"
-                type="number"
-                min="0"
-                max="10"
-                className="col-span-4"
-                value={nps}
-                onChange={(e) => setNps(e.target.value)}
-                required
-              />
+              <div className="flex flex-wrap gap-2" id="nps">
+                {[...Array(11)].map((_, i) => (
+                  <Button
+                    key={i}
+                    type="button"
+                    variant={nps === i ? "default" : "outline"}
+                    className="w-10 h-10"
+                    onClick={() => setNps(i)}
+                  >
+                    {i}
+                  </Button>
+                ))}
+              </div>
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="futureTopic" className="col-span-4">
@@ -113,7 +118,9 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
           <DialogFooter>
-            <Button type="submit">Submit Feedback</Button>
+            <Button type="submit" disabled={nps === null}>
+              Submit Feedback
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>
