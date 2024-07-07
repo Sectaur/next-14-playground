@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 
 interface PurchaseModalProps {
@@ -7,25 +7,33 @@ interface PurchaseModalProps {
 }
 
 const PurchaseModal: React.FC<PurchaseModalProps> = ({ isOpen, onClose }) => {
-  const [timeLeft, setTimeLeft] = useState(3600); // 1 hour in seconds
+  if (!isOpen) return null;
 
-  useEffect(() => {
-    if (!isOpen) return;
+  // Set expiry date to 7 days from now
+  const expiryDate = new Date();
+  expiryDate.setDate(expiryDate.getDate() + 7);
 
-    const timer = setInterval(() => {
-      setTimeLeft((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [isOpen]);
-
-  const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+  const formatDate = (date: Date) => {
+    const day = date.getDate();
+    const month = date.toLocaleString("default", { month: "long" });
+    const year = date.getFullYear();
+    const suffix = getDaySuffix(day);
+    return `${day}${suffix} ${month} ${year}`;
   };
 
-  if (!isOpen) return null;
+  const getDaySuffix = (day: number) => {
+    if (day > 3 && day < 21) return "th";
+    switch (day % 10) {
+      case 1:
+        return "st";
+      case 2:
+        return "nd";
+      case 3:
+        return "rd";
+      default:
+        return "th";
+    }
+  };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center font-['Inter'] p-4">
@@ -43,19 +51,17 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ isOpen, onClose }) => {
           Unlock Full Access
         </h2>
         <p className="text-white mb-6">
-          Continue your journey to neck ultrasound mastery. Unlock the full
-          course now and save!
+          You've reached the end of the free content. Unlock the full course now
+          and save with our limited-time offer!
         </p>
         <div className="bg-[#1E1E1E] rounded-lg p-4 mb-6">
-          <p className="text-[#23aac9] font-bold text-sm mb-2">
-            Limited Time Offer
-          </p>
+          <p className="text-[#23aac9] font-bold text-sm mb-2">Special Offer</p>
           <p className="text-white text-3xl font-bold mb-1">
             $499{" "}
             <span className="text-gray-400 text-xl line-through">$650</span>
           </p>
           <p className="text-[#23aac9] text-sm">
-            Offer expires in: {formatTime(timeLeft)}
+            Offer valid until: {formatDate(expiryDate)}
           </p>
         </div>
         <button
@@ -70,7 +76,7 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ isOpen, onClose }) => {
           className="w-full text-[#23aac9] text-sm hover:underline"
           onClick={onClose}
         >
-          Maybe later
+          maybe later
         </button>
       </div>
     </div>
