@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import termsData from "./terms_and_conditions.json";
+import { v4 as uuidv4 } from "uuid";
 
 interface Section {
   id: string;
@@ -14,6 +15,11 @@ const TermsAndConditions: React.FC = () => {
   useEffect(() => {
     setTerms(termsData);
   }, []);
+
+  const generateUUID = () => {
+    let UUID = uuidv4();
+    console.log(UUID);
+  };
 
   return (
     <div className="font-inter bg-[#272727] text-white min-h-screen p-4 md:p-8 flex flex-col items-center">
@@ -48,7 +54,7 @@ const TermsAndConditions: React.FC = () => {
         <div className="flex justify-center">
           <button
             className="bg-[#23AAC9] text-white font-semibold py-2 px-6 rounded-full hover:bg-opacity-90 transition duration-300"
-            onClick={() => console.log("Terms accepted")}
+            onClick={generateUUID}
           >
             Accept
           </button>
