@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -12,30 +12,30 @@ import {
   CartesianGrid,
 } from "recharts";
 
-type Feature = {
+interface Feature {
   name: string;
   points: number;
-};
+}
 
-type Category = {
+interface Category {
   name: string;
   features: Feature[];
   allowMultiple?: boolean;
-};
+}
 
-type SelectedFeatures = {
+interface SelectedFeatures {
   [category: string]: string[];
-};
+}
 
-type AggregatedResults = {
+interface AggregatedResults {
   [category: string]: {
     [feature: string]: number;
   };
-};
+}
 
-type ExpertChoices = {
+interface ExpertChoices {
   [category: string]: string[];
-};
+}
 
 const categories: Category[] = [
   {
@@ -131,11 +131,17 @@ const MockedTIRADSCalculator: React.FC = () => {
   const [tiRadsLevel, setTiRadsLevel] = useState("");
   const [recommendation, setRecommendation] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [aggregateData, setAggregateData] = useState<AggregatedResults>(
-    mockAggregatedResults
-  );
-  const [expertChoices, setExpertChoices] =
-    useState<ExpertChoices>(mockExpertChoices);
+  const [aggregateData] = useState<AggregatedResults>(mockAggregatedResults);
+  const [expertChoices] = useState<ExpertChoices>(mockExpertChoices);
+  const [showVideo, setShowVideo] = useState(false);
+
+  const resultsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isSubmitted && resultsRef.current) {
+      resultsRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [isSubmitted]);
 
   const handleFeatureChange = (category: string, feature: string) => {
     setSelectedFeatures((prev) => {
@@ -208,6 +214,11 @@ const MockedTIRADSCalculator: React.FC = () => {
     setTiRadsLevel("");
     setRecommendation("");
     setIsSubmitted(false);
+    setShowVideo(false);
+  };
+
+  const handleShowVideo = () => {
+    setShowVideo(true);
   };
 
   const renderBarChart = (category: string) => {
@@ -225,10 +236,20 @@ const MockedTIRADSCalculator: React.FC = () => {
         <BarChart
           data={data}
           layout="vertical"
-          margin={{ top: 5, right: 5, left: 5, bottom: 5 }}
+          margin={{ top: 5, right: 5, left: 5, bottom: 25 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis type="number" domain={[0, 100]} hide />
+          <XAxis
+            type="number"
+            domain={[0, 100]}
+            tickFormatter={(value) => `${value}%`}
+            label={{
+              value: "Percentage",
+              position: "bottom",
+              offset: 0,
+              fill: "rgb(244, 244, 245)",
+            }}
+          />
           <YAxis
             dataKey="name"
             type="category"
@@ -255,86 +276,143 @@ const MockedTIRADSCalculator: React.FC = () => {
     );
   };
 
+  if (showVideo) {
+    return (
+      <div className="w-full h-screen flex items-center justify-center bg-black">
+        <video autoPlay loop className="max-w-full max-h-full">
+          <source src="/api/placeholder-video" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full mx-auto bg-[#272727] text-[rgb(244,244,245)]">
       <h1 className="text-xl sm:text-2xl font-bold p-4 text-center">
         ACR TI-RADS Calculator (Mocked)
       </h1>
-      <div className="grid grid-cols-1 gap-4">
-        {categories.map((category) => (
-          <Card
-            key={category.name}
-            className="bg-[#272727] border-[#23aac9] mx-2"
-          >
+
+      {!isSubmitted && (
+        <Card className="mx-2 mb-4 bg-[#272727] border-[#23aac9]">
+          <CardHeader className="p-4">
+            <CardTitle className="text-[rgb(244,244,245)] text-lg font-inter">
+              Case Details
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-4 text-sm text-zinc-300 font-inter">
+            <p className="mb-2">
+              49 year old lady with right sided thyroid lesion
+            </p>
+            <p className="font-semibold">
+              What is the TIRADS classification for the nodule on the right?
+            </p>
+          </CardContent>
+        </Card>
+      )}
+
+      {isSubmitted && (
+        <div ref={resultsRef}>
+          <Card className="mx-2 mb-4 bg-[#272727] border-[#23aac9]">
             <CardHeader className="p-4">
               <CardTitle className="text-[rgb(244,244,245)] text-lg">
-                {category.name}
+                Results
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-4">
-              <div className="grid grid-cols-1 gap-2">
-                {category.features.map((feature) => (
-                  <Button
-                    key={feature.name}
-                    onClick={() =>
-                      handleFeatureChange(category.name, feature.name)
-                    }
-                    className={`w-full justify-start text-left px-4 py-2 rounded-lg text-sm ${
-                      selectedFeatures[category.name]?.includes(feature.name)
-                        ? "bg-[#23aac9] text-[rgb(244,244,245)]"
-                        : "bg-zinc-400 text-[#272727] hover:bg-[#23aac9] hover:text-[rgb(244,244,245)]"
-                    }`}
-                    disabled={isSubmitted}
-                  >
-                    <span className="truncate">{feature.name}</span>
-                    <span className="ml-1 whitespace-nowrap">
-                      ({feature.points} pts)
-                    </span>
-                  </Button>
-                ))}
+            <CardContent className="p-4 text-sm text-zinc-300">
+              <p className="mb-2">Total Score: {totalScore}</p>
+              <p className="mb-2">TI-RADS Level: {tiRadsLevel}</p>
+              <p className="mb-2">Recommendation: {recommendation}</p>
+              <div className="flex justify-between items-center mt-4">
+                <Button
+                  onClick={handleShowVideo}
+                  className="bg-[#23aac9] text-[rgb(244,244,245)] hover:bg-opacity-80 rounded-lg py-2 px-4 text-sm"
+                >
+                  Show Video Explanation
+                </Button>
+                <Button
+                  onClick={handleReset}
+                  className="bg-[#ff7f50] text-[rgb(244,244,245)] hover:bg-opacity-80 rounded-lg py-2 px-4 text-sm"
+                >
+                  Reset
+                </Button>
               </div>
-              {isSubmitted && (
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {!isSubmitted ? (
+        <div className="grid grid-cols-1 gap-4">
+          {categories.map((category) => (
+            <Card
+              key={category.name}
+              className="bg-[#272727] border-[#23aac9] mx-2"
+            >
+              <CardHeader className="p-4">
+                <CardTitle className="text-[rgb(244,244,245)] text-lg">
+                  {category.name}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-4">
+                <div className="grid grid-cols-1 gap-2">
+                  {category.features.map((feature) => (
+                    <Button
+                      key={feature.name}
+                      onClick={() =>
+                        handleFeatureChange(category.name, feature.name)
+                      }
+                      className={`w-full justify-start text-left px-4 py-2 rounded-lg text-sm ${
+                        selectedFeatures[category.name]?.includes(feature.name)
+                          ? "bg-[#23aac9] text-[rgb(244,244,245)]"
+                          : "bg-zinc-400 text-[#272727] hover:bg-[#23aac9] hover:text-[rgb(244,244,245)]"
+                      }`}
+                    >
+                      <span className="truncate">{feature.name}</span>
+                      <span className="ml-1 whitespace-nowrap">
+                        ({feature.points} pts)
+                      </span>
+                    </Button>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 gap-4">
+          {categories.map((category) => (
+            <Card
+              key={category.name}
+              className="bg-[#272727] border-[#23aac9] mx-2"
+            >
+              <CardHeader className="p-4">
+                <CardTitle className="text-[rgb(244,244,245)] text-lg">
+                  {category.name}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-4">
                 <div className="mt-4">
                   <h3 className="text-base font-semibold mb-2 text-white">
                     Comparison
                   </h3>
                   {renderBarChart(category.name)}
                 </div>
-              )}
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-      <div className="flex p-4">
-        {!isSubmitted ? (
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      )}
+
+      {!isSubmitted && (
+        <div className="flex p-4">
           <Button
             onClick={handleSubmit}
             className="w-full bg-[#23aac9] text-[rgb(244,244,245)] hover:bg-opacity-80 rounded-lg py-2 text-sm"
           >
             Submit and Compare
           </Button>
-        ) : (
-          <Button
-            onClick={handleReset}
-            className="w-full bg-[#ff7f50] text-[rgb(244,244,245)] hover:bg-opacity-80 rounded-lg py-2 text-sm"
-          >
-            Reset
-          </Button>
-        )}
-      </div>
-      {isSubmitted && (
-        <Card className="mx-2 mb-4 bg-[#272727] border-[#23aac9]">
-          <CardHeader className="p-4">
-            <CardTitle className="text-[rgb(244,244,245)] text-lg">
-              Results
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-4 text-sm text-zinc-300">
-            <p className="mb-2">Total Score: {totalScore}</p>
-            <p className="mb-2">TI-RADS Level: {tiRadsLevel}</p>
-            <p className="mb-2">Recommendation: {recommendation}</p>
-          </CardContent>
-        </Card>
+        </div>
       )}
     </div>
   );
