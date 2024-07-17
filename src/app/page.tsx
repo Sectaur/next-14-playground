@@ -13,8 +13,8 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <SlidePresenter />
-      {/* <KahootTIRADSCalculator /> */}
+      {/* <SlidePresenter /> */}
+      <KahootTIRADSCalculator />
       {/* <h1 className="text-4xl font-bold mb-8">Welcome to My Course</h1>
 
       <Button onClick={() => setIsModalOpen(true)}>Open Purchase Modal</Button>

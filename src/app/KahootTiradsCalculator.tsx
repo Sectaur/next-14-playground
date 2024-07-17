@@ -9,6 +9,7 @@ import {
   Tooltip,
   ResponsiveContainer,
   Legend,
+  CartesianGrid,
 } from "recharts";
 
 type Feature = {
@@ -20,6 +21,20 @@ type Category = {
   name: string;
   features: Feature[];
   allowMultiple?: boolean;
+};
+
+type SelectedFeatures = {
+  [category: string]: string[];
+};
+
+type AggregatedResults = {
+  [category: string]: {
+    [feature: string]: number;
+  };
+};
+
+type ExpertChoices = {
+  [category: string]: string[];
 };
 
 const categories: Category[] = [
@@ -69,57 +84,58 @@ const categories: Category[] = [
   },
 ];
 
-// Mock backend service
-const mockBackendService = {
-  submitChoices: (choices: { [key: string]: string[] }) => {
-    console.log("Submitted choices:", choices);
-    return Promise.resolve();
+const mockExpertChoices: ExpertChoices = {
+  Composition: ["Solid or almost completely solid"],
+  Echogenicity: ["Hypoechoic"],
+  Shape: ["Wider-than-tall"],
+  Margin: ["Lobulated or irregular"],
+  "Echogenic Foci": ["Macrocalcifications", "Punctate echogenic foci"],
+};
+
+const mockAggregatedResults: AggregatedResults = {
+  Composition: {
+    "Cystic or almost completely cystic": 10,
+    Spongiform: 5,
+    "Mixed cystic and solid": 30,
+    "Solid or almost completely solid": 55,
   },
-  getAggregateData: () => {
-    return Promise.resolve({
-      Composition: {
-        "Cystic or almost completely cystic": 10,
-        Spongiform: 5,
-        "Mixed cystic and solid": 30,
-        "Solid or almost completely solid": 55,
-      },
-      Echogenicity: {
-        Anechoic: 15,
-        "Hyperechoic or isoechoic": 25,
-        Hypoechoic: 40,
-        "Very hypoechoic": 20,
-      },
-      Shape: {
-        "Wider-than-tall": 70,
-        "Taller-than-wide": 30,
-      },
-      Margin: {
-        Smooth: 40,
-        "Ill-defined": 20,
-        "Lobulated or irregular": 30,
-        "Extra-thyroidal extension": 10,
-      },
-      "Echogenic Foci": {
-        "None or large comet-tail artifacts": 30,
-        Macrocalcifications: 25,
-        "Peripheral (rim) calcifications": 20,
-        "Punctate echogenic foci": 25,
-      },
-    });
+  Echogenicity: {
+    Anechoic: 15,
+    "Hyperechoic or isoechoic": 25,
+    Hypoechoic: 40,
+    "Very hypoechoic": 20,
+  },
+  Shape: {
+    "Wider-than-tall": 70,
+    "Taller-than-wide": 30,
+  },
+  Margin: {
+    Smooth: 40,
+    "Ill-defined": 20,
+    "Lobulated or irregular": 30,
+    "Extra-thyroidal extension": 10,
+  },
+  "Echogenic Foci": {
+    "None or large comet-tail artifacts": 30,
+    Macrocalcifications: 25,
+    "Peripheral (rim) calcifications": 20,
+    "Punctate echogenic foci": 25,
   },
 };
 
-const KahootTIRADSCalculator: React.FC = () => {
-  const [selectedFeatures, setSelectedFeatures] = useState<{
-    [key: string]: string[];
-  }>({});
+const MockedTIRADSCalculator: React.FC = () => {
+  const [selectedFeatures, setSelectedFeatures] = useState<SelectedFeatures>(
+    {}
+  );
   const [totalScore, setTotalScore] = useState(0);
   const [tiRadsLevel, setTiRadsLevel] = useState("");
   const [recommendation, setRecommendation] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [aggregateData, setAggregateData] = useState<{
-    [key: string]: { [key: string]: number };
-  }>({});
+  const [aggregateData, setAggregateData] = useState<AggregatedResults>(
+    mockAggregatedResults
+  );
+  const [expertChoices, setExpertChoices] =
+    useState<ExpertChoices>(mockExpertChoices);
 
   const handleFeatureChange = (category: string, feature: string) => {
     setSelectedFeatures((prev) => {
@@ -155,7 +171,7 @@ const KahootTIRADSCalculator: React.FC = () => {
     setRecommendation(getRecommendation(level));
   };
 
-  const getTIRADSLevel = (score: number) => {
+  const getTIRADSLevel = (score: number): string => {
     if (score === 0) return "TR1";
     if (score === 2) return "TR2";
     if (score === 3) return "TR3";
@@ -164,7 +180,7 @@ const KahootTIRADSCalculator: React.FC = () => {
     return "Unknown";
   };
 
-  const getRecommendation = (level: string) => {
+  const getRecommendation = (level: string): string => {
     switch (level) {
       case "TR1":
         return "No FNA";
@@ -181,11 +197,8 @@ const KahootTIRADSCalculator: React.FC = () => {
     }
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     calculateScore();
-    await mockBackendService.submitChoices(selectedFeatures);
-    const data = await mockBackendService.getAggregateData();
-    setAggregateData(data);
     setIsSubmitted(true);
   };
 
@@ -195,7 +208,6 @@ const KahootTIRADSCalculator: React.FC = () => {
     setTiRadsLevel("");
     setRecommendation("");
     setIsSubmitted(false);
-    setAggregateData({});
   };
 
   const renderBarChart = (category: string) => {
@@ -204,6 +216,7 @@ const KahootTIRADSCalculator: React.FC = () => {
         name,
         "Other Users": value,
         "Your Choice": selectedFeatures[category]?.includes(name) ? 100 : 0,
+        "Expert Choice": expertChoices[category]?.includes(name) ? 100 : 0,
       })
     );
 
@@ -211,105 +224,112 @@ const KahootTIRADSCalculator: React.FC = () => {
       <ResponsiveContainer width="100%" height={300}>
         <BarChart
           data={data}
-          margin={{ top: 20, right: 30, left: 20, bottom: 70 }}
+          layout="vertical"
+          margin={{ top: 5, right: 5, left: 5, bottom: 5 }}
         >
-          <XAxis
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis type="number" domain={[0, 100]} hide />
+          <YAxis
             dataKey="name"
-            interval={0}
-            tick={{ fill: "rgb(244, 244, 245)", fontSize: 12 }}
-            angle={-45}
-            textAnchor="end"
-            height={80}
+            type="category"
+            width={120}
+            tick={{ fill: "rgb(244, 244, 245)", fontSize: 10 }}
           />
-          <YAxis tick={{ fill: "rgb(244, 244, 245)" }} />
           <Tooltip
             contentStyle={{
               backgroundColor: "#272727",
               color: "rgb(244, 244, 245)",
             }}
+            formatter={(value: number) => `${value}%`}
           />
           <Legend
             verticalAlign="top"
             height={36}
-            wrapperStyle={{ color: "rgb(244, 244, 245)" }}
+            wrapperStyle={{ color: "rgb(244, 244, 245)", fontSize: 12 }}
           />
           <Bar dataKey="Other Users" fill="#23aac9" />
           <Bar dataKey="Your Choice" fill="#ff7f50" />
+          <Bar dataKey="Expert Choice" fill="#50C878" />
         </BarChart>
       </ResponsiveContainer>
     );
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4 bg-[#272727] text-[rgb(244,244,245)]">
-      <h1 className="text-2xl font-bold mb-6 text-center">
-        ACR TI-RADS Calculator
+    <div className="w-full mx-auto bg-[#272727] text-[rgb(244,244,245)]">
+      <h1 className="text-xl sm:text-2xl font-bold p-4 text-center">
+        ACR TI-RADS Calculator (Mocked)
       </h1>
-      {categories.map((category) => (
-        <Card
-          key={category.name}
-          className="mb-4 bg-[#272727] border-[#23aac9]"
-        >
-          <CardHeader>
-            <CardTitle className="text-[rgb(244,244,245)]">
-              {category.name}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 gap-2">
-              {category.features.map((feature) => (
-                <Button
-                  key={feature.name}
-                  onClick={() =>
-                    handleFeatureChange(category.name, feature.name)
-                  }
-                  className={`w-full justify-start text-left px-4 py-2 rounded-lg ${
-                    selectedFeatures[category.name]?.includes(feature.name)
-                      ? "bg-[#23aac9] text-[rgb(244,244,245)]"
-                      : "bg-zinc-400 text-[#272727] hover:bg-[#23aac9] hover:text-[rgb(244,244,245)]"
-                  }`}
-                  disabled={isSubmitted}
-                >
-                  {feature.name} ({feature.points} points)
-                </Button>
-              ))}
-            </div>
-            {isSubmitted && (
-              <div className="mt-4">
-                <h3 className="text-lg font-semibold mb-2 text-white">
-                  Comparison with Other Users
-                </h3>
-                {renderBarChart(category.name)}
+      <div className="grid grid-cols-1 gap-4">
+        {categories.map((category) => (
+          <Card
+            key={category.name}
+            className="bg-[#272727] border-[#23aac9] mx-2"
+          >
+            <CardHeader className="p-4">
+              <CardTitle className="text-[rgb(244,244,245)] text-lg">
+                {category.name}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-4">
+              <div className="grid grid-cols-1 gap-2">
+                {category.features.map((feature) => (
+                  <Button
+                    key={feature.name}
+                    onClick={() =>
+                      handleFeatureChange(category.name, feature.name)
+                    }
+                    className={`w-full justify-start text-left px-4 py-2 rounded-lg text-sm ${
+                      selectedFeatures[category.name]?.includes(feature.name)
+                        ? "bg-[#23aac9] text-[rgb(244,244,245)]"
+                        : "bg-zinc-400 text-[#272727] hover:bg-[#23aac9] hover:text-[rgb(244,244,245)]"
+                    }`}
+                    disabled={isSubmitted}
+                  >
+                    <span className="truncate">{feature.name}</span>
+                    <span className="ml-1 whitespace-nowrap">
+                      ({feature.points} pts)
+                    </span>
+                  </Button>
+                ))}
               </div>
-            )}
-          </CardContent>
-        </Card>
-      ))}
-      <div className="flex gap-4">
+              {isSubmitted && (
+                <div className="mt-4">
+                  <h3 className="text-base font-semibold mb-2 text-white">
+                    Comparison
+                  </h3>
+                  {renderBarChart(category.name)}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+      <div className="flex p-4">
         {!isSubmitted ? (
           <Button
             onClick={handleSubmit}
-            className="w-full mt-4 bg-[#23aac9] text-[rgb(244,244,245)] hover:bg-opacity-80 rounded-lg py-2"
+            className="w-full bg-[#23aac9] text-[rgb(244,244,245)] hover:bg-opacity-80 rounded-lg py-2 text-sm"
           >
             Submit and Compare
           </Button>
         ) : (
-          <>
-            <Button
-              onClick={handleReset}
-              className="flex-1 mt-4 bg-[#ff7f50] text-[rgb(244,244,245)] hover:bg-opacity-80 rounded-lg py-2"
-            >
-              Reset
-            </Button>
-          </>
+          <Button
+            onClick={handleReset}
+            className="w-full bg-[#ff7f50] text-[rgb(244,244,245)] hover:bg-opacity-80 rounded-lg py-2 text-sm"
+          >
+            Reset
+          </Button>
         )}
       </div>
       {isSubmitted && (
-        <Card className="mt-6 bg-[#272727] border-[#23aac9]">
-          <CardHeader>
-            <CardTitle className="text-[rgb(244,244,245)]">Results</CardTitle>
+        <Card className="mx-2 mb-4 bg-[#272727] border-[#23aac9]">
+          <CardHeader className="p-4">
+            <CardTitle className="text-[rgb(244,244,245)] text-lg">
+              Results
+            </CardTitle>
           </CardHeader>
-          <CardContent className="text-[rgb(244,244,245)]">
+          <CardContent className="p-4 text-sm text-zinc-300">
             <p className="mb-2">Total Score: {totalScore}</p>
             <p className="mb-2">TI-RADS Level: {tiRadsLevel}</p>
             <p className="mb-2">Recommendation: {recommendation}</p>
@@ -320,4 +340,4 @@ const KahootTIRADSCalculator: React.FC = () => {
   );
 };
 
-export default KahootTIRADSCalculator;
+export default MockedTIRADSCalculator;
