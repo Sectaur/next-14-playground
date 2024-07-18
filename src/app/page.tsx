@@ -1,12 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import CombinedPurchaseModal from "./combinedPurchaseModal";
-import TermsAndConditions from "./termsAndConditions";
-import KahootTiradsSCalculator from "./KahootTiradsCalculator";
-import KahootTIRADSCalculator from "./KahootTiradsCalculator";
-import SlidePresenter from "./slidePresenter";
+import KahootTIRADSCalculator from "./components/KahootTiradsCalculator";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
