@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import KahootTIRADSCalculator from "./components/KahootTiradsCalculator";
+import MockedTIRADSCalculator from "./components/mockedTIRADSCalculator";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       {/* <SlidePresenter /> */}
-      <KahootTIRADSCalculator />
+      <MockedTIRADSCalculator />
       {/* <h1 className="text-4xl font-bold mb-8">Welcome to My Course</h1>
 
       <Button onClick={() => setIsModalOpen(true)}>Open Purchase Modal</Button>
