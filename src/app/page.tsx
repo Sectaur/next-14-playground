@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import TIRADSCalculator from "./components/TIRADSCalculator";
+import TIRADSLabeler from "./components/TIRADSlabeler";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -9,7 +10,9 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       {/* <SlidePresenter /> */}
-      <TIRADSCalculator />
+      <TIRADSLabeler />
+      {/* <TIRADSCalculator /> */}
+
       {/* <h1 className="text-4xl font-bold mb-8">Welcome to My Course</h1>
 
       <Button onClick={() => setIsModalOpen(true)}>Open Purchase Modal</Button>
