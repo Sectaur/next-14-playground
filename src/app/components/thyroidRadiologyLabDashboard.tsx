@@ -15,20 +15,20 @@ const courses: Course[] = [
   {
     title: "Thyroid Ultrasound Basics",
     description: "Learn the fundamentals of thyroid ultrasound imaging",
-    imageUrl: "/Liver.png",
+    imageUrl: "/neck-us.png",
     status: "live",
   },
   {
     title: "Nodule Characterization",
     description: "Techniques for characterizing thyroid nodules on ultrasound",
-    imageUrl: "/Liver.png",
+    imageUrl: "/neck-us.png",
     status: "draft",
   },
   {
     title: "TI-RADS Classification",
     description:
       "Applying the TI-RADS system for thyroid nodule risk stratification",
-    imageUrl: "/Liver.png",
+    imageUrl: "/neck-us.png",
     status: "live",
   },
 ];
@@ -38,7 +38,7 @@ const ThyroidRadiologyLabDashboard: React.FC = () => {
     <div className="bg-gray-900 min-h-screen">
       <section
         className="hero bg-cover bg-center text-white py-12 px-6 relative"
-        style={{ backgroundImage: "url('/hero-background.png')" }}
+        style={{ backgroundImage: "url('/neck-us.png')" }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between relative z-10">
@@ -53,7 +53,7 @@ const ThyroidRadiologyLabDashboard: React.FC = () => {
             </p>
             <div className="flex items-center mb-6">
               <Image
-                src="/neck-us.png"
+                src="/hp-photo.png"
                 alt="Dr. John Doe"
                 width={80}
                 height={80}
@@ -100,7 +100,7 @@ const ThyroidRadiologyLabDashboard: React.FC = () => {
               <CardHeader>
                 <div className="relative w-full h-48">
                   <Image
-                    src={course.imageUrl}
+                    src={"/neck-us.png"}
                     alt={course.title}
                     layout="fill"
                     objectFit="cover"
