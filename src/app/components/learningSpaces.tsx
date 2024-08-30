@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-type ContentType = "text" | "image" | "video" | "quiz" | "case-study";
+export type ContentType = 'lesson' | 'quiz' | 'text' | 'image' | 'video' | 'case-study';
 
 interface ContentItem {
   title: string;
@@ -24,13 +24,7 @@ const ContentRenderer: React.FC<{
     case "text":
       return <p>{content as string}</p>;
     case "image":
-      return (
-        <img
-          src={content as string}
-          alt="Content"
-          className="max-w-full h-auto"
-        />
-      );
+      return <img src={content as string} alt="Content" className="max-w-full h-auto" />;
     case "video":
       return <video src={content as string} controls className="max-w-full" />;
     case "quiz":
@@ -44,7 +38,7 @@ const ContentRenderer: React.FC<{
   }
 };
 
-const Space: React.FC<SpaceProps> = ({ name, description, content }) => {
+const LearningSpaces: React.FC<SpaceProps> = ({ name, description, content }) => {
   return (
     <Card className="w-full max-w-4xl mx-auto">
       <CardHeader>
@@ -80,4 +74,4 @@ const Space: React.FC<SpaceProps> = ({ name, description, content }) => {
   );
 };
 
-export default Space;
+export default LearningSpaces;
