@@ -20,7 +20,34 @@ interface Course {
   status: "live" | "draft" | "archived";
 }
 
+interface Event {
+  title: string;
+  description: string;
+  imageUrl: string;
+  status: "live" | "draft" | "archived";
+  date: string;
+}
+
 const courses: Course[] = [
+  {
+    title: "Course - Thyroid Ultrasound Basics",
+    description: "Learn the fundamentals of thyroid ultrasound imaging",
+    imageUrl: "/parotid.png",
+    status: "live",
+  },
+  {
+    title: "Interactive Videos",
+    description: "Follow along with interactive thyroid ultrasound videos",
+    imageUrl: "/parotid.png",
+    status: "draft",
+  },
+  {
+    title: "TI-RADS Classification Practice",
+    description:
+      "Applying the TI-RADS system for thyroid nodule risk stratification",
+    imageUrl: "/parotid.png",
+    status: "live",
+  },
   {
     title: "Thyroid Ultrasound Basics",
     description: "Learn the fundamentals of thyroid ultrasound imaging",
@@ -42,9 +69,19 @@ const courses: Course[] = [
   },
 ];
 
+const events: Event[] = [
+  {
+    title: "Master TI-RADS - An Interactive Webinar",
+    description: "Learn the fundamentals of thyroid ultrasound imaging",
+    imageUrl: "/parotid.png",
+    status: "live",
+    date: "26th October 2024 @ 10:00 AM NZDT",
+  },
+];
+
 const ThyroidRadiologyLabDashboard: React.FC = () => {
   return (
-    <div className="bg-gray-900 min-h-screen">
+    <div className="bg-gray-900 min-h-screen overflow-y-scroll">
       <nav className="bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -206,7 +243,53 @@ const ThyroidRadiologyLabDashboard: React.FC = () => {
 
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-6 text-white">
-              Featured Courses
+              Upcoming Events
+            </h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {events.map((course, index) => (
+                <Card
+                  key={index}
+                  className="bg-gray-800 border-gray-700 hover:bg-gray-700 transition-colors"
+                >
+                  <CardHeader>
+                    <div className="relative w-full h-48">
+                      <Image
+                        src={course.imageUrl}
+                        alt={course.title}
+                        layout="fill"
+                        objectFit="cover"
+                        className="w-full h-full mb-2"
+                      />
+                    </div>
+                    <CardTitle className="text-lg font-semibold mt-4 mb-1 text-white">
+                      {course.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-400 text-sm mb-2">
+                      {course.description}
+                    </p>
+                    <p className="text-white font-bold py-2">
+                      <span className="text-white">Date:</span>
+                      {course.date}
+                    </p>
+                    <Badge
+                      variant={
+                        course.status === "live" ? "default" : "secondary"
+                      }
+                      className="uppercase text-xs"
+                    >
+                      {course.status}
+                    </Badge>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+          <div className="p-6 ">
+            <h2 className="text-2xl font-bold mb-6 text-white">
+              Featured Content
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
