@@ -10,7 +10,7 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between">
       <ThyroidRadiologyLabDashboard />
       {/* <SlidePresenter /> */}
       {/* <TIRADSLabeler /> */}
