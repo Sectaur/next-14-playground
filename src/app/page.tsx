@@ -8,8 +8,8 @@ import VideosLandingPageExample from "./pages/videosLandingPageExample"; // Add 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
-      {/* <LandingPageExample /> */}
-      <VideosLandingPageExample />
+      <LandingPageExample />
+      {/* <VideosLandingPageExample /> */}
       {/* <HeroCarouselExample /> */}
     </main>
   );

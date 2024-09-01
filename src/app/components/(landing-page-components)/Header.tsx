@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from 'next/link';
 
 interface HeaderProps {
   logo: string;
@@ -12,8 +13,8 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { name: "Home", href: "#" },
-    { name: "Courses", href: "#" },
+    { name: "Home", href: "/" },
+    { name: "Videos", href: "/videos" },
     { name: "About", href: "#" },
     { name: "Contact", href: "#" },
   ];
@@ -38,14 +39,19 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
             >
               <div className="flex flex-col space-y-4 mt-8">
                 {navItems.map((item) => (
-                  <Button
+                  <Link
                     key={item.name}
-                    variant="ghost"
-                    className="justify-start text-[#23AAC9] rounded-full"
-                    onClick={() => setIsOpen(false)}
+                    href={item.href}
+                    passHref
                   >
-                    {item.name}
-                  </Button>
+                    <Button
+                      variant="ghost"
+                      className="justify-start text-[#23AAC9] rounded-full"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {item.name}
+                    </Button>
+                  </Link>
                 ))}
               </div>
             </SheetContent>
@@ -60,13 +66,18 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
         </div>
         <div className="hidden md:flex space-x-4">
           {navItems.map((item) => (
-            <Button
+            <Link
               key={item.name}
-              variant="ghost"
-              className="text-[#23AAC9] rounded-full hover:bg-[#e6e8e8] hover:text-[#23AAC9] hover:border-1 hover:border-[#23AAC9] transition-colors duration-300 ease-in-out"
+              href={item.href}
+              passHref
             >
-              {item.name}
-            </Button>
+              <Button
+                variant="ghost"
+                className="text-[#23AAC9] rounded-full hover:bg-[#e6e8e8] hover:text-[#23AAC9] hover:border-1 hover:border-[#23AAC9] transition-colors duration-300 ease-in-out"
+              >
+                {item.name}
+              </Button>
+            </Link>
           ))}
         </div>
         <Button
