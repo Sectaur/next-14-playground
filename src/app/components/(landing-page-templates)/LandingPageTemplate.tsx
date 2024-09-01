@@ -1,9 +1,9 @@
 import React from "react";
-import Header from "./(landing-page-components)/Header";
-import HeroSection from "./(landing-page-components)/HeroSection";
-import FeaturesSection from "./(landing-page-components)/FeaturesSection";
-import CTASection from "./(landing-page-components)/CTASection";
-import Footer from "./(landing-page-components)/Footer";
+import Header from "../(landing-page-components)/Header";
+import HeroSection from "../(landing-page-components)/HeroSection";
+import FeaturesSection from "../(landing-page-components)/FeaturesSection";
+import CTASection from "../(landing-page-components)/CTASection";
+import Footer from "../(landing-page-components)/Footer";
 
 interface HeroSectionProps {
   title: string;

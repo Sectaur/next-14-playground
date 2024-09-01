@@ -1,5 +1,5 @@
 import React from "react";
-import LandingPageTemplate from "../components/LandingPageTemplate";
+import LandingPageTemplate from "../components/(landing-page-templates)/LandingPageTemplate";
 import {
   Play,
   FileQuestion,

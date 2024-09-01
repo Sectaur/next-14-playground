@@ -1,5 +1,5 @@
 import React from "react";
-import LandingPageCarouselTemplate from "../components/LandingPageCarouselTemplate";
+import LandingPageCarouselTemplate from "../components/(landing-page-templates)/LandingPageCarouselTemplate";
 import {
   Play,
   FileQuestion,

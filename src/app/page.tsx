@@ -7,8 +7,8 @@ import HeroCarouselExample from "./pages/heroCarouselExample";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
-      {/* <LandingPageExample /> */}
-      <HeroCarouselExample />
+      <LandingPageExample />
+      {/* <HeroCarouselExample /> */}
     </main>
   );
 }
