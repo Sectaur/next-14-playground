@@ -1,27 +1,26 @@
-"use client";
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { User } from 'lucide-react';
+import MuxPlayer from "@mux/mux-player-react";
 
-// Define types for our data structures
-interface HostData {
+export interface HostData {
   name: string;
   qualifications: string;
   specialty: string;
   bio: string;
+  imageUrl?: string; // Add this line
 }
 
-interface Benefit {
+export interface Benefit {
   title: string;
   description: string;
   image: string;
 }
 
-interface WebinarData {
+export interface WebinarData {
   title: string;
   description: string;
   benefits: Benefit[];
@@ -33,14 +32,21 @@ interface FormData {
   occupation: string;
 }
 
-// Define props for the component
-interface WebinarLandingPageProps {
+export interface WebinarLandingPageProps {
   email?: string;
-  webinarDate: string;
+  webinarDate: number;
   backgroundImageUrl: string;
+  hostData: HostData;
+  webinarData: WebinarData;
 }
 
-const WebinarLandingPage: React.FC<WebinarLandingPageProps> = ({ email, webinarDate, backgroundImageUrl }) => {
+const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({ 
+  email, 
+  webinarDate, 
+  backgroundImageUrl, 
+  hostData, 
+  webinarData 
+}) => {
   const [isRegistered, setIsRegistered] = useState<boolean>(false);
   const [countdown, setCountdown] = useState<string>('');
   const [formData, setFormData] = useState<FormData>({
@@ -48,37 +54,6 @@ const WebinarLandingPage: React.FC<WebinarLandingPageProps> = ({ email, webinarD
     country: '',
     occupation: '',
   });
-
-  // Dummy data for Dr. Hament Pandya
-  const hostData: HostData = {
-    name: "Dr. Hament Pandya",
-    qualifications: "MD, FRCR, FRANZCR",
-    specialty: "Consultant Radiologist, Specializing in Thoracic Imaging",
-    bio: "Dr. Pandya is a renowned thoracic radiologist with over 15 years of experience. He is passionate about advancing radiological education and has authored numerous publications in the field."
-  };
-
-  // Dummy data for webinar details
-  const webinarData: WebinarData = {
-    title: "Advanced Techniques in Thoracic CT Interpretation",
-    description: "Join us for an in-depth exploration of cutting-edge CT interpretation techniques in thoracic imaging.",
-    benefits: [
-      {
-        title: "Enhanced Diagnostic Accuracy",
-        description: "Learn advanced techniques to improve your diagnostic accuracy in complex thoracic cases.",
-        image: "/api/placeholder/400/300" // Replace with actual image path
-      },
-      {
-        title: "Efficient Workflow Strategies",
-        description: "Discover methods to streamline your radiology workflow without compromising on quality.",
-        image: "/api/placeholder/400/300" // Replace with actual image path
-      },
-      {
-        title: "Latest Research Insights",
-        description: "Stay updated with the most recent developments and research in thoracic imaging.",
-        image: "/api/placeholder/400/300" // Replace with actual image path
-      }
-    ]
-  };
 
   useEffect(() => {
     if (email) {
@@ -88,8 +63,8 @@ const WebinarLandingPage: React.FC<WebinarLandingPageProps> = ({ email, webinarD
 
   useEffect(() => {
     const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = new Date(webinarDate).getTime() - now;
+      const now = Date.now();
+      const distance = webinarDate - now;
 
       if (distance < 0) {
         clearInterval(timer);
@@ -117,36 +92,75 @@ const WebinarLandingPage: React.FC<WebinarLandingPageProps> = ({ email, webinarD
     setIsRegistered(true);
   };
 
+  const formatWebinarDate = (timestamp: number): string => {
+    const date = new Date(timestamp);
+    return date.toLocaleString('en-US', { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric', 
+      hour: '2-digit', 
+      minute: '2-digit',
+      timeZoneName: 'short'
+    });
+  };
+
   return (
-    <div className="flex flex-col min-h-screen bg-[#272727] text-white font-inter">
+    <div className="flex flex-col min-h-screen bg-[#272727] text-white font-inter w-full">
       {/* Hero Section */}
       <div 
-        className="relative h-[70vh] bg-cover bg-center flex items-center justify-center"
+        className="relative h-[50vh] bg-cover bg-center flex items-center justify-center w-full"
         style={{ backgroundImage: `url(${backgroundImageUrl})` }}
       >
         <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div className="relative z-10 text-white text-center max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">{webinarData.title}</h1>
-          <p className="text-xl mb-8">{webinarData.description}</p>
-          {!isRegistered && (
-            <Button 
-              size="lg" 
-              className="bg-[#23AAC9] hover:bg-[#1C89A2] text-white rounded-full px-8 py-3"
-              onClick={() => document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Register Now
-            </Button>
-          )}
+        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between w-full px-4 md:px-8 lg:px-16 max-w-7xl mx-auto">
+          <div className="w-full md:w-1/2 text-center md:text-left mb-8 md:mb-0">
+            <div className="bg-black bg-opacity-50 p-6 rounded-lg">
+              <h1 className="text-3xl md:text-5xl font-bold mb-4">{webinarData.title}</h1>
+              <p className="text-lg md:text-xl mb-6">{webinarData.description}</p>
+              {!isRegistered && (
+                <Button 
+                  size="lg" 
+                  className="bg-[#23AAC9] hover:bg-[#1C89A2] text-white rounded-full px-8 py-3"
+                  onClick={() => document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  Register Now
+                </Button>
+              )}
+            </div>
+          </div>
+          <div className="w-full md:w-1/2 max-w-lg">
+            <MuxPlayer
+              streamType="on-demand"
+              playbackId="YOUR_MUX_PLAYBACK_ID"
+              metadata={{
+                video_id: "video-id-1234",
+                video_title: "Webinar Promo",
+                viewer_user_id: "user-id-abc123",
+              }}
+              className="w-full aspect-video rounded-lg shadow-lg"
+            />
+          </div>
         </div>
       </div>
 
       {/* Host Details */}
-      <div className="bg-[#393939] py-16">
-        <div className="max-w-4xl mx-auto px-4">
+      <div className="bg-[#393939] py-16 w-full">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16">
           <h2 className="text-3xl font-bold mb-8 text-center text-[#23AAC9]">Meet Your Host</h2>
           <div className="flex flex-col md:flex-row items-center justify-center md:space-x-8">
-            <div className="w-32 h-32 bg-[#525252] rounded-full flex items-center justify-center mb-4 md:mb-0">
-              <User size={64} className="text-[#23AAC9]" />
+            <div className="w-48 h-48 mb-4 md:mb-0">
+              {hostData.imageUrl ? (
+                <img 
+                  src={hostData.imageUrl} 
+                  alt={hostData.name} 
+                  className="w-full h-full object-cover rounded-full"
+                />
+              ) : (
+                <div className="w-full h-full bg-[#525252] rounded-full flex items-center justify-center">
+                  <User size={64} className="text-[#23AAC9]" />
+                </div>
+              )}
             </div>
             <div className="text-center md:text-left">
               <h3 className="text-2xl font-semibold">{hostData.name}</h3>
@@ -159,15 +173,15 @@ const WebinarLandingPage: React.FC<WebinarLandingPageProps> = ({ email, webinarD
       </div>
 
       {/* Benefits Section */}
-      <div className="bg-[#272727] py-16">
-        <div className="max-w-6xl mx-auto px-4">
+      <div className="bg-[#272727] py-16 w-full">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16">
           <h2 className="text-3xl font-bold mb-12 text-center text-[#23AAC9]">What You'll Learn</h2>
           {webinarData.benefits.map((benefit, index) => (
             <div key={index} className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center mb-16 last:mb-0`}>
-              <div className="w-full md:w-1/2 mb-6 md:mb-0">
-                <img src={benefit.image} alt={benefit.title} className="rounded-lg shadow-lg" />
+              <div className="w-full md:w-1/3 mb-6 md:mb-0">
+                <img src={benefit.image} alt={benefit.title} className="rounded-lg shadow-lg w-full max-w-[200px] mx-auto" />
               </div>
-              <div className="w-full md:w-1/2 md:px-8">
+              <div className="w-full md:w-2/3 md:px-8">
                 <h3 className="text-2xl font-semibold mb-4 text-[#23AAC9]">{benefit.title}</h3>
                 <p className="text-lg">{benefit.description}</p>
               </div>
@@ -178,7 +192,7 @@ const WebinarLandingPage: React.FC<WebinarLandingPageProps> = ({ email, webinarD
 
       {/* Registration Form */}
       {!isRegistered ? (
-        <div id="registration" className="bg-[#393939] py-16">
+        <div id="registration" className="bg-[#393939] py-16 w-full">
           <div className="max-w-md mx-auto px-4">
             <h2 className="text-3xl font-bold mb-8 text-center text-[#23AAC9]">Register Now</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -227,7 +241,7 @@ const WebinarLandingPage: React.FC<WebinarLandingPageProps> = ({ email, webinarD
           </div>
         </div>
       ) : (
-        <div className="bg-[#393939] py-16">
+        <div className="bg-[#393939] py-16 w-full">
           <div className="max-w-md mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-4 text-[#23AAC9]">You're Registered!</h2>
             <p className="text-xl mb-4">Webinar starts in:</p>
@@ -242,4 +256,4 @@ const WebinarLandingPage: React.FC<WebinarLandingPageProps> = ({ email, webinarD
   );
 };
 
-export default WebinarLandingPage;
+export default WebinarLandingPageTemplate;

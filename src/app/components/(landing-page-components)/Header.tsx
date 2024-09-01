@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "Videos", href: "/videos" },
-    { name: "About", href: "#" },
+    { name: "Webinar", href: "/webinar" },
     { name: "Contact", href: "#" },
   ];
 
