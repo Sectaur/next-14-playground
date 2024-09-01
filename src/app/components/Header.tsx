@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
   ];
 
   return (
-    <header className="bg-[#272727] shadow-sm sticky top-0 z-50">
+    <header className="bg-black shadow-sm sticky top-0 z-50">
       <nav className="container mx-auto px-4 py-3 flex justify-between items-center">
         <div className="flex items-center">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
