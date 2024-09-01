@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import MuxPlayer from "@mux/mux-player-react";
 
-interface HeroSectionCarouselProps {
+interface HeroSectionProps {
   title: string;
   description: string;
   ctaText: string;
@@ -11,7 +11,7 @@ interface HeroSectionCarouselProps {
 }
 
 interface HeroCarouselProps {
-  heroSections: HeroSectionCarouselProps[];
+  heroSections: HeroSectionProps[];
 }
 
 const HeroSectionCarousel: React.FC<HeroCarouselProps> = ({ heroSections }) => {

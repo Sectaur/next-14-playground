@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./(landing-page-components)/Header";
-import HeroSection from "./(landing-page-components)/HeroSection";
+import HeroSectionCarousel from "./(landing-page-components)/HeroSectionCarousel";
 import FeaturesSection from "./(landing-page-components)/FeaturesSection";
 import CTASection from "./(landing-page-components)/CTASection";
 import Footer from "./(landing-page-components)/Footer";
@@ -13,9 +13,13 @@ interface HeroSectionProps {
   videoPlaybackId: string;
 }
 
-interface LandingPageTemplateProps {
+interface HeroCarouselProps {
+  heroSections: HeroSectionProps[];
+}
+
+interface LandingPageCarouselProps {
   headerLogo: string;
-  heroSection: HeroSectionProps;
+  heroSections: HeroCarouselProps;
   featuresTitle: string;
   features: Array<{
     icon: React.ReactNode;
@@ -29,9 +33,9 @@ interface LandingPageTemplateProps {
   footerText: string;
 }
 
-const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({
+const LandingPageCarouselTemplate: React.FC<LandingPageCarouselProps> = ({
   headerLogo,
-  heroSection,
+  heroSections,
   featuresTitle,
   features,
   ctaTitle,
@@ -42,7 +46,7 @@ const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({
   return (
     <div className="flex flex-col min-h-screen bg-[#070707] text-white w-full">
       <Header logo={headerLogo} />
-      <HeroSection {...heroSection} />
+      <HeroSectionCarousel {...heroSections} />
       <div className="flex-grow w-full">
         <FeaturesSection title={featuresTitle} features={features} />
         <CTASection
@@ -56,4 +60,4 @@ const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({
   );
 };
 
-export default LandingPageTemplate;
+export default LandingPageCarouselTemplate;

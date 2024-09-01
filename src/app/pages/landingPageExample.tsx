@@ -12,7 +12,7 @@ import {
   Headphones,
 } from "lucide-react";
 
-const ExamplePage: React.FC = () => {
+const LandingPageExample: React.FC = () => {
   return (
     <LandingPageTemplate
       headerLogo="/ResectaurLearningLogo.svg"
@@ -98,4 +98,4 @@ const ExamplePage: React.FC = () => {
   );
 };
 
-export default ExamplePage;
+export default LandingPageExample;

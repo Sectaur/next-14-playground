@@ -1,5 +1,5 @@
 import React from "react";
-import LandingPage from "../components/LandingPage";
+import LandingPageCarouselTemplate from "../components/LandingPageCarouselTemplate";
 import {
   Play,
   FileQuestion,
@@ -12,9 +12,9 @@ import {
   Headphones,
 } from "lucide-react";
 
-const ExamplePage: React.FC = () => {
+const HeroCarouselExample: React.FC = () => {
   return (
-    <LandingPage
+    <LandingPageCarouselTemplate
       headerLogo="/ResectaurLearningLogo.svg"
       heroSections={[
         {
@@ -108,4 +108,4 @@ const ExamplePage: React.FC = () => {
   );
 };
 
-export default ExamplePage;
+export default HeroCarouselHeroCarouselExample;
