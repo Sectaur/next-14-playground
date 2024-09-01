@@ -43,9 +43,9 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({
 }) => {
   return (
     <section className="w-full bg-[#070707]">
-      <div className="w-full px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8 max-w-none">
         <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center py-8 text-white">{title}</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {features.map((feature, index) => (
             <FeatureCard key={index} {...feature} />
           ))}

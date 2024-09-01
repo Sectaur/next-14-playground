@@ -40,7 +40,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
   footerText,
 }) => {
   return (
-    <div className="flex flex-col min-h-screen bg-[#070707] text-white">
+    <div className="flex flex-col min-h-screen bg-[#070707] text-white w-full">
       <Header logo={headerLogo} />
       <HeroSection {...heroSection} />
       <div className="flex-grow w-full">
