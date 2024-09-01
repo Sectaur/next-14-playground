@@ -12,15 +12,21 @@ const FeatureCard: React.FC<{
   description: string;
   imageSrc: string;
 }> = ({ icon, title, description, imageSrc }) => (
-  <Card className="bg-[#272727] border-[#393939]">
+  <Card className="bg-[#272727] border-[#393939] transition-all duration-300 ease-in-out hover:scale-105 hover:bg-[#2a2a2a] hover:shadow-lg">
     <CardContent className="p-6">
-      <div className="text-[#23AAC9] mb-4">{icon}</div>
-      <h3 className="text-lg font-semibold mb-2 text-white">{title}</h3>
-      <p className="text-[#838383] mb-4">{description}</p>
+      <div className="text-[#23AAC9] mb-4 transition-transform duration-300 ease-in-out group-hover:scale-110">
+        {icon}
+      </div>
+      <h3 className="text-lg font-semibold mb-2 text-white group-hover:text-[#23AAC9] transition-colors duration-300 ease-in-out">
+        {title}
+      </h3>
+      <p className="text-[#838383] mb-4 group-hover:text-white transition-colors duration-300 ease-in-out">
+        {description}
+      </p>
       <img
         src={imageSrc}
         alt={title}
-        className="w-full h-48 object-cover rounded-md"
+        className="w-full h-48 object-cover rounded-md transition-all duration-300 ease-in-out group-hover:opacity-90"
       />
     </CardContent>
   </Card>
@@ -35,7 +41,11 @@ const UnauthenticatedLandingPage: React.FC = () => {
         <nav className="container mx-auto px-4 py-3 flex justify-between items-center">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-[#23AAC9]">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-[#23AAC9] rounded-full"
+              >
                 <Menu />
               </Button>
             </SheetTrigger>
@@ -43,25 +53,25 @@ const UnauthenticatedLandingPage: React.FC = () => {
               <div className="flex flex-col space-y-4">
                 <Button
                   variant="ghost"
-                  className="justify-start text-[#23AAC9]"
+                  className="justify-start text-[#23AAC9] rounded-full"
                 >
                   Home
                 </Button>
                 <Button
                   variant="ghost"
-                  className="justify-start text-[#23AAC9]"
+                  className="justify-start text-[#23AAC9] rounded-full"
                 >
                   Courses
                 </Button>
                 <Button
                   variant="ghost"
-                  className="justify-start text-[#23AAC9]"
+                  className="justify-start text-[#23AAC9] rounded-full"
                 >
                   About
                 </Button>
                 <Button
                   variant="ghost"
-                  className="justify-start text-[#23AAC9]"
+                  className="justify-start text-[#23AAC9] rounded-full"
                 >
                   Contact
                 </Button>
@@ -70,17 +80,16 @@ const UnauthenticatedLandingPage: React.FC = () => {
           </Sheet>
           <div className="flex items-center">
             <Image
-              src="/sectaur-icon.png"
-              alt="Sectaur Learning"
-              width={40}
-              height={40}
+              src="/ResectaurLearningLogo.svg"
+              alt="Learning Logo"
+              width={250}
+              height={180}
               className="mr-2"
             />
-            <span className="text-2xl font-bold text-[#23AAC9]">Sectaur</span>
           </div>
           <Button
             variant="outline"
-            className="bg-[#272727] text-[#23AAC9] border-[#23AAC9] hover:bg-[#1C898A]"
+            className="bg-[#272727] text-[#23AAC9] border-[#23AAC9] hover:bg-[#23AAC9] hover:text-white rounded-full"
           >
             Login
           </Button>
@@ -89,25 +98,35 @@ const UnauthenticatedLandingPage: React.FC = () => {
 
       <main className="container mx-auto px-4 py-8">
         {/* Hero Section */}
-        <section className="bg-[#272727] rounded-lg p-8 mb-12">
-          <div className="max-w-2xl mb-8">
-            <h2 className="text-4xl font-bold mb-4">
-              Master Radiology with Interactive Learning
-            </h2>
-            <p className="text-xl mb-6 text-[#838383]">
-              Join our upcoming webinar: "Advanced Techniques in CT
-              Interpretation"
-            </p>
-            <Button className="bg-[#23AAC9] text-white hover:bg-[#1C898A]">
-              Sign Up for Webinar
-            </Button>
+        <section
+          className="bg-[#272727] rounded-lg p-8 mb-12 bg-cover bg-center relative"
+          style={{ backgroundImage: "url(/neck-us.png)" }}
+        >
+          <div className="absolute inset-0 bg-black opacity-50 rounded-lg"></div>
+          <div className="flex items-center justify-between relative z-10">
+            <div className="max-w-lg">
+              <div className="bg-[#272727] bg-opacity-75 p-6 rounded-lg">
+                <h2 className="text-4xl font-bold mb-4">
+                  Master Radiology with Interactive Learning
+                </h2>
+                <p className="text-xl mb-6 text-[#838383]">
+                  Join our upcoming webinar: "Advanced Techniques in CT
+                  Interpretation"
+                </p>
+                <Button className="bg-[#23AAC9] text-white hover:bg-[#1C898A] rounded-full">
+                  Sign Up for Webinar
+                </Button>
+              </div>
+            </div>
+            <div className="w-1/3">
+              <MuxPlayer
+                streamType="on-demand"
+                playbackId="YOUR_MUX_PLAYBACK_ID"
+                metadata={{ video_id: "video-id-12345" }}
+                className="w-full aspect-video rounded-lg"
+              />
+            </div>
           </div>
-          <MuxPlayer
-            streamType="on-demand"
-            playbackId="YOUR_MUX_PLAYBACK_ID"
-            metadata={{ video_id: "video-id-12345" }}
-            className="w-full aspect-video rounded-lg"
-          />
         </section>
 
         {/* Features Section */}
@@ -120,19 +139,19 @@ const UnauthenticatedLandingPage: React.FC = () => {
               icon={<Play size={24} />}
               title="Interactive Videos"
               description="Watch educational content alongside medical images for hands-on learning."
-              imageSrc="/api/placeholder/400/300"
+              imageSrc="/parotid.png"
             />
             <FeatureCard
               icon={<FileQuestion size={24} />}
               title="Interactive Quizzes"
               description="Test your knowledge with our comprehensive quiz system."
-              imageSrc="/api/placeholder/400/300"
+              imageSrc="/neck-us.png"
             />
             <FeatureCard
               icon={<Activity size={24} />}
               title="TI-RADS Practice Cases"
               description="Improve your skills with Thyroid Imaging Reporting and Data System cases."
-              imageSrc="/api/placeholder/400/300"
+              imageSrc="/parotid.png"
             />
           </div>
         </section>
@@ -143,10 +162,10 @@ const UnauthenticatedLandingPage: React.FC = () => {
             Ready to Enhance Your Radiology Skills?
           </h2>
           <p className="text-xl mb-6 text-[#838383]">
-            Join Sectaur Learning today and take your expertise to the next
+            Join our Learning platform today and take your expertise to the next
             level.
           </p>
-          <Button className="bg-[#23AAC9] text-white hover:bg-[#1C898A]">
+          <Button className="bg-[#23AAC9] text-white hover:bg-[#1C898A] rounded-full">
             Get Started for Free
           </Button>
         </section>
@@ -154,7 +173,7 @@ const UnauthenticatedLandingPage: React.FC = () => {
 
       <footer className="bg-[#272727] py-6 mt-12">
         <div className="container mx-auto px-4 text-center text-[#838383]">
-          <p>&copy; 2024 Sectaur Learning. All rights reserved.</p>
+          <p>&copy; 2024 Learning Platform. All rights reserved.</p>
         </div>
       </footer>
     </div>
