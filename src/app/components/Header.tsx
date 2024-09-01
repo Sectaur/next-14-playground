@@ -32,7 +32,10 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="bg-[#272727] text-white w-[300px]">
+            <SheetContent
+              side="left"
+              className="bg-[#272727] text-white w-[300px]"
+            >
               <div className="flex flex-col space-y-4 mt-8">
                 {navItems.map((item) => (
                   <Button
@@ -60,7 +63,7 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
             <Button
               key={item.name}
               variant="ghost"
-              className="text-[#23AAC9] rounded-full hover:bg-[#272727] hover:text-[#23AAC9] hover:border-1 hover:border-[#23AAC9] transition-colors duration-300 ease-in-out"
+              className="text-[#23AAC9] rounded-full hover:bg-[#e6e8e8] hover:text-[#23AAC9] hover:border-1 hover:border-[#23AAC9] transition-colors duration-300 ease-in-out"
             >
               {item.name}
             </Button>
