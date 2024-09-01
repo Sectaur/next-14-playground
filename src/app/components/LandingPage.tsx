@@ -15,7 +15,7 @@ interface HeroSectionProps {
 
 interface LandingPageProps {
   headerLogo: string;
-  heroSections: HeroSectionProps[];
+  heroSection: HeroSectionProps;
   featuresTitle: string;
   features: Array<{
     icon: React.ReactNode;
@@ -31,7 +31,7 @@ interface LandingPageProps {
 
 const LandingPage: React.FC<LandingPageProps> = ({
   headerLogo,
-  heroSections,
+  heroSection,
   featuresTitle,
   features,
   ctaTitle,
@@ -42,7 +42,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
   return (
     <div className="flex flex-col min-h-screen bg-[#070707] text-white">
       <Header logo={headerLogo} />
-      <HeroSection heroSections={heroSections} />
+      <HeroSection {...heroSection} />
       <div className="flex-grow w-full">
         <FeaturesSection title={featuresTitle} features={features} />
         <CTASection
