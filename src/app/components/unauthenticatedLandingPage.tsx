@@ -12,21 +12,21 @@ const FeatureCard: React.FC<{
   description: string;
   imageSrc: string;
 }> = ({ icon, title, description, imageSrc }) => (
-  <Card className="bg-[#272727] border-[#393939] transition-all duration-300 ease-in-out hover:scale-105 hover:bg-[#2a2a2a] hover:shadow-lg">
+  <Card className="bg-[#272727] border-[#393939] transition-all duration-300 ease-in-out hover:scale-[1.02] hover:bg-[#323232] hover:shadow-lg">
     <CardContent className="p-6">
-      <div className="text-[#23AAC9] mb-4 transition-transform duration-300 ease-in-out group-hover:scale-110">
+      <div className="text-[#23AAC9] mb-4">
         {icon}
       </div>
-      <h3 className="text-lg font-semibold mb-2 text-white group-hover:text-[#23AAC9] transition-colors duration-300 ease-in-out">
+      <h3 className="text-lg font-semibold mb-2 text-white hover:text-[#23AAC9] transition-colors duration-300 ease-in-out">
         {title}
       </h3>
-      <p className="text-[#838383] mb-4 group-hover:text-white transition-colors duration-300 ease-in-out">
+      <p className="text-[#838383] mb-4 hover:text-white transition-colors duration-300 ease-in-out">
         {description}
       </p>
       <img
         src={imageSrc}
         alt={title}
-        className="w-full h-48 object-cover rounded-md transition-all duration-300 ease-in-out group-hover:opacity-90"
+        className="w-full h-48 object-cover rounded-md transition-all duration-300 ease-in-out hover:opacity-90"
       />
     </CardContent>
   </Card>
@@ -89,7 +89,7 @@ const UnauthenticatedLandingPage: React.FC = () => {
           </div>
           <Button
             variant="outline"
-            className="bg-[#272727] text-[#23AAC9] border-[#23AAC9] hover:bg-[#23AAC9] hover:text-white rounded-full"
+            className="bg-[#272727] text-[#23AAC9] border-[#23AAC9] hover:bg-[#23AAC9] hover:text-[#272727] rounded-full transition-colors duration-300"
           >
             Login
           </Button>
@@ -113,7 +113,7 @@ const UnauthenticatedLandingPage: React.FC = () => {
                   Join our upcoming webinar: "Advanced Techniques in CT
                   Interpretation"
                 </p>
-                <Button className="bg-[#23AAC9] text-white hover:bg-[#1C898A] rounded-full">
+                <Button className="bg-[#23AAC9] text-[#272727] hover:bg-[#272727] hover:text-[#23AAC9] rounded-full transition-colors duration-300">
                   Sign Up for Webinar
                 </Button>
               </div>
@@ -165,7 +165,7 @@ const UnauthenticatedLandingPage: React.FC = () => {
             Join our Learning platform today and take your expertise to the next
             level.
           </p>
-          <Button className="bg-[#23AAC9] text-white hover:bg-[#1C898A] rounded-full">
+          <Button className="bg-[#23AAC9] text-[#272727] hover:bg-[#272727] hover:text-[#23AAC9] rounded-full transition-colors duration-300">
             Get Started for Free
           </Button>
         </section>
