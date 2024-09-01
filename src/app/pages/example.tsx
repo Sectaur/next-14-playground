@@ -6,11 +6,23 @@ const ExamplePage: React.FC = () => {
   return (
     <LandingPage
       headerLogo="/ResectaurLearningLogo.svg"
-      heroTitle="Master Radiology with Interactive Learning"
-      heroDescription="Join our upcoming webinar: 'Advanced Techniques in CT Interpretation'"
-      heroCtaText="Sign Up for Webinar"
-      heroBackgroundImage="/neck-us.png"
-      heroVideoPlaybackId="YOUR_MUX_PLAYBACK_ID"
+      heroSections={[
+        {
+          title: "Master Radiology with Interactive Learning",
+          description: "Join our upcoming webinar: 'Advanced Techniques in CT Interpretation'",
+          ctaText: "Sign Up for Webinar",
+          backgroundImage: "/neck-us.png",
+          videoPlaybackId: "YOUR_MUX_PLAYBACK_ID_1",
+        },
+        {
+          title: "Explore Our Latest Courses",
+          description: "Dive into our new series on MRI analysis",
+          ctaText: "Browse Courses",
+          backgroundImage: "/parotid.png",
+          videoPlaybackId: "YOUR_MUX_PLAYBACK_ID_2",
+        },
+        // You can add more hero sections here if needed
+      ]}
       featuresTitle="Explore Our Features"
       features={[
         {

@@ -5,13 +5,17 @@ import FeaturesSection from "./FeaturesSection";
 import CTASection from "./CTASection";
 import Footer from "./Footer";
 
+interface HeroSectionProps {
+  title: string;
+  description: string;
+  ctaText: string;
+  backgroundImage: string;
+  videoPlaybackId: string;
+}
+
 interface LandingPageProps {
   headerLogo: string;
-  heroTitle: string;
-  heroDescription: string;
-  heroCtaText: string;
-  heroBackgroundImage: string;
-  heroVideoPlaybackId: string;
+  heroSections: HeroSectionProps[];
   featuresTitle: string;
   features: Array<{
     icon: React.ReactNode;
@@ -27,11 +31,7 @@ interface LandingPageProps {
 
 const LandingPage: React.FC<LandingPageProps> = ({
   headerLogo,
-  heroTitle,
-  heroDescription,
-  heroCtaText,
-  heroBackgroundImage,
-  heroVideoPlaybackId,
+  heroSections,
   featuresTitle,
   features,
   ctaTitle,
@@ -42,13 +42,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
   return (
     <div className="flex flex-col min-h-screen bg-[#070707] text-white">
       <Header logo={headerLogo} />
-      <HeroSection
-        title={heroTitle}
-        description={heroDescription}
-        ctaText={heroCtaText}
-        backgroundImage={heroBackgroundImage}
-        videoPlaybackId={heroVideoPlaybackId}
-      />
+      <HeroSection heroSections={heroSections} />
       <div className="flex-grow w-full">
         <FeaturesSection title={featuresTitle} features={features} />
         <CTASection
