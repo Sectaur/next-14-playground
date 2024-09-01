@@ -60,7 +60,7 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
             <Button
               key={item.name}
               variant="ghost"
-              className="text-[#23AAC9] rounded-full"
+              className="text-[#23AAC9] rounded-full hover:bg-[#272727] hover:text-[#23AAC9] hover:border-1 hover:border-[#23AAC9] transition-colors duration-300 ease-in-out"
             >
               {item.name}
             </Button>
