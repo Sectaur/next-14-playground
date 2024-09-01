@@ -42,21 +42,21 @@ const LandingPage: React.FC<LandingPageProps> = ({
   return (
     <div className="flex flex-col min-h-screen bg-[#070707] text-white">
       <Header logo={headerLogo} />
-      <main className="flex-grow">
-        <HeroSection
-          title={heroTitle}
-          description={heroDescription}
-          ctaText={heroCtaText}
-          backgroundImage={heroBackgroundImage}
-          videoPlaybackId={heroVideoPlaybackId}
-        />
+      <HeroSection
+        title={heroTitle}
+        description={heroDescription}
+        ctaText={heroCtaText}
+        backgroundImage={heroBackgroundImage}
+        videoPlaybackId={heroVideoPlaybackId}
+      />
+      <div className="flex-grow w-full">
         <FeaturesSection title={featuresTitle} features={features} />
         <CTASection
           title={ctaTitle}
           description={ctaDescription}
           buttonText={ctaButtonText}
         />
-      </main>
+      </div>
       <Footer text={footerText} />
     </div>
   );

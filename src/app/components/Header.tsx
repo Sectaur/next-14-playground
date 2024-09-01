@@ -51,7 +51,7 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
             src={logo}
             alt="Learning Logo"
             width={300}
-            height={180}
+            height={200}
             className="w-[150px] md:w-[200px] h-auto mr-2"
           />
         </div>

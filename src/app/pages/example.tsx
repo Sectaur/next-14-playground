@@ -1,6 +1,6 @@
 import React from "react";
 import LandingPage from "../components/LandingPage";
-import { Play, FileQuestion, Activity } from "lucide-react";
+import { Play, FileQuestion, Activity, Book, Users, Award, BarChart, Zap, Headphones } from "lucide-react";
 
 const ExamplePage: React.FC = () => {
   return (
@@ -30,6 +30,42 @@ const ExamplePage: React.FC = () => {
           title: "TI-RADS Practice Cases",
           description: "Improve your skills with Thyroid Imaging Reporting and Data System cases.",
           imageSrc: "/parotid.png",
+        },
+        {
+          icon: <Book size={24} />,
+          title: "Comprehensive Library",
+          description: "Access a vast collection of radiology resources and case studies.",
+          imageSrc: "/parotid.png",
+        },
+        {
+          icon: <Users size={24} />,
+          title: "Community Forums",
+          description: "Engage with peers and experts in our active discussion forums.",
+          imageSrc: "/neck-us.png",
+        },
+        {
+          icon: <Award size={24} />,
+          title: "Certification Prep",
+          description: "Prepare for radiology certifications with targeted study materials.",
+          imageSrc: "/parotid.png",
+        },
+        {
+          icon: <BarChart size={24} />,
+          title: "Progress Tracking",
+          description: "Monitor your learning progress with detailed analytics and insights.",
+          imageSrc: "/neck-us.png",
+        },
+        {
+          icon: <Zap size={24} />,
+          title: "Live Webinars",
+          description: "Participate in live webinars led by renowned radiology experts.",
+          imageSrc: "/parotid.png",
+        },
+        {
+          icon: <Headphones size={24} />,
+          title: "Audio Lectures",
+          description: "Listen to radiology lectures on-the-go for flexible learning.",
+          imageSrc: "/neck-us.png",
         },
       ]}
       ctaTitle="Ready to Enhance Your Radiology Skills?"
