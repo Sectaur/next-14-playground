@@ -18,7 +18,7 @@ const ExamplePage: React.FC = () => {
           title: "Explore Our Latest Courses",
           description: "Dive into our new series on MRI analysis",
           ctaText: "Browse Courses",
-          backgroundImage: "/parotid.png",
+          backgroundImage: "/neck-scan.png",
           videoPlaybackId: "YOUR_MUX_PLAYBACK_ID_2",
         },
         // You can add more hero sections here if needed
