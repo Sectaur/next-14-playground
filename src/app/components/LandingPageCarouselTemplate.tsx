@@ -1,9 +1,9 @@
 import React from "react";
-import Header from "./Header";
-import HeroSection from "./HeroSection";
-import FeaturesSection from "./FeaturesSection";
-import CTASection from "./CTASection";
-import Footer from "./Footer";
+import Header from "./(landing-page-components)/Header";
+import HeroSection from "./(landing-page-components)/HeroSection";
+import FeaturesSection from "./(landing-page-components)/FeaturesSection";
+import CTASection from "./(landing-page-components)/CTASection";
+import Footer from "./(landing-page-components)/Footer";
 
 interface HeroSectionProps {
   title: string;
@@ -13,7 +13,7 @@ interface HeroSectionProps {
   videoPlaybackId: string;
 }
 
-interface LandingPageProps {
+interface LandingPageTemplateProps {
   headerLogo: string;
   heroSection: HeroSectionProps;
   featuresTitle: string;
@@ -29,7 +29,7 @@ interface LandingPageProps {
   footerText: string;
 }
 
-const LandingPage: React.FC<LandingPageProps> = ({
+const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({
   headerLogo,
   heroSection,
   featuresTitle,
@@ -56,4 +56,4 @@ const LandingPage: React.FC<LandingPageProps> = ({
   );
 };
 
-export default LandingPage;
+export default LandingPageTemplate;
