@@ -50,9 +50,9 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
           <Image
             src={logo}
             alt="Learning Logo"
-            width={150}
-            height={108}
-            className="mr-2"
+            width={300}
+            height={180}
+            className="w-[150px] md:w-[200px] h-auto mr-2"
           />
         </div>
         <div className="hidden md:flex space-x-4">
