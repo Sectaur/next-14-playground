@@ -13,7 +13,7 @@ const WebinarExample: React.FC = () => {
       name: "Dr. Hament Pandya",
       qualifications: "MD, FRCR, FRANZCR",
       specialty: "Consultant Radiologist, Specializing in Head and Neck Imaging",
-      bio: "Dr. Pandya is a renowned thoracic radiologist with over 15 years of experience. He is passionate about advancing radiological education and has authored numerous publications in the field.",
+      bio: "Dr. Pandya is a renowned Head and Neck radiologist with over 15 years of experience. He is passionate about advancing radiological education and has authored numerous publications in the field.",
       imageUrl: "/hp-photo.png"
     },
     webinarData: {
@@ -22,7 +22,7 @@ const WebinarExample: React.FC = () => {
       benefits: [
         {
           title: "Enhanced Diagnostic Accuracy",
-          description: "Learn advanced techniques to improve your diagnostic accuracy in complex thoracic cases.",
+          description: "Learn advanced techniques to improve your diagnostic accuracy in complex Head and Neck cases.",
           image: "/parotid.png" // Replace with actual image path
         },
         {
