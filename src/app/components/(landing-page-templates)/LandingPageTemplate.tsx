@@ -1,4 +1,5 @@
 import React from "react";
+import { useRouter } from 'next/navigation';
 import Header from "../(landing-page-components)/Header";
 import HeroSection from "../(landing-page-components)/HeroSection";
 import FeaturesSection from "../(landing-page-components)/FeaturesSection";
@@ -39,10 +40,16 @@ const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({
   ctaButtonText,
   footerText,
 }) => {
+  const router = useRouter();
+
+  const handleCtaClick = () => {
+    router.push('/webinar');
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-[#070707] text-white w-full">
       <Header logo={headerLogo} />
-      <HeroSection {...heroSection} />
+      <HeroSection {...heroSection} onCtaClick={handleCtaClick} />
       <div className="flex-grow w-full">
         <FeaturesSection title={featuresTitle} features={features} />
         <CTASection

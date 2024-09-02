@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import MuxPlayer from "@mux/mux-player-react";
+import { useRouter } from 'next/navigation';
 
 interface HeroSectionProps {
   title: string;
@@ -8,9 +9,17 @@ interface HeroSectionProps {
   ctaText: string;
   backgroundImage: string;
   videoPlaybackId: string;
+  onCtaClick: () => void; // Add this line
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ title, description, ctaText, backgroundImage, videoPlaybackId }) => {
+const HeroSection: React.FC<HeroSectionProps> = ({ 
+  title, 
+  description, 
+  ctaText, 
+  backgroundImage, 
+  videoPlaybackId,
+  onCtaClick // Add this line
+}) => {
   return (
     <section
       className="bg-[#272727] bg-cover bg-center relative w-full min-h-[50vh] transition-all duration-500 ease-in-out"
@@ -22,7 +31,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ title, description, ctaText, 
           <div className="bg-[#272727] bg-opacity-75 p-4 md:p-6 rounded-lg">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 md:mb-4">{title}</h2>
             <p className="text-base md:text-lg mb-4 md:mb-6 text-white font-semibold">{description}</p>
-            <Button className="bg-[#23AAC9] text-[#272727] hover:bg-[#272727] hover:text-[#23AAC9] rounded-full transition-colors duration-300 px-6 py-2 text-sm md:text-base">
+            <Button 
+              className="bg-[#23AAC9] text-[#272727] hover:bg-[#272727] hover:text-[#23AAC9] rounded-full transition-colors duration-300 px-6 py-2 text-sm md:text-base"
+              onClick={onCtaClick} // Add this line
+            >
               {ctaText}
             </Button>
           </div>

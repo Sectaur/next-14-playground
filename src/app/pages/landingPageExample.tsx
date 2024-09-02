@@ -31,7 +31,7 @@ const LandingPageExample: React.FC = () => {
           title: "Interactive Videos",
           description:
             "Watch educational content alongside medical images for hands-on learning.",
-          imageSrc: "/parotid.png",
+          imageSrc: "/mri-brain.png", // Changed from parotid.png
         },
         {
           icon: <FileQuestion size={24} />,
@@ -66,7 +66,7 @@ const LandingPageExample: React.FC = () => {
           title: "Certification Prep",
           description:
             "Prepare for radiology certifications with targeted study materials.",
-          imageSrc: "/parotid.png",
+          imageSrc: "/mri-brain.png", // Changed from parotid.png
         },
         {
           icon: <BarChart size={24} />,

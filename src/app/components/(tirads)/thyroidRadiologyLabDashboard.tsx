@@ -32,7 +32,7 @@ const courses: Course[] = [
   {
     title: "Course - Thyroid Ultrasound Basics",
     description: "Learn the fundamentals of thyroid ultrasound imaging",
-    imageUrl: "/parotid.png",
+    imageUrl: "/mri-brain.png", // Changed from parotid.png
     status: "live",
   },
   {
@@ -64,7 +64,7 @@ const courses: Course[] = [
     title: "TI-RADS Classification",
     description:
       "Applying the TI-RADS system for thyroid nodule risk stratification",
-    imageUrl: "/parotid.png",
+    imageUrl: "/mri-brain.png", // Changed from parotid.png
     status: "live",
   },
 ];

@@ -31,7 +31,7 @@ const VideosLandingPageExample: React.FC = () => {
           title: "Learn about Neck Lumps",
           description:
             "Female aged 34 with right sided neck lump",
-          imageSrc: "/parotid.png",
+          imageSrc: "/mri-brain.png", // Changed from parotid.png
         },
         {
           icon: <Play size={24} />,
@@ -45,7 +45,7 @@ const VideosLandingPageExample: React.FC = () => {
           title: "Salivary Gland Tumors",
           description:
             "Female aged 52 with parotid gland mass",
-          imageSrc: "/parotid.png",
+          imageSrc: "/mri-brain.png", // Changed from parotid.png
         },
         {
           icon: <Play size={24} />,
