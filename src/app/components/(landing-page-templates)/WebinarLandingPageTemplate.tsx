@@ -27,7 +27,9 @@ export interface WebinarData {
 }
 
 interface FormData {
-  fullName: string;
+  firstName: string;
+  surname: string;
+  email: string;
   country: string;
   occupation: string;
 }
@@ -38,6 +40,14 @@ export interface WebinarLandingPageProps {
   backgroundImageUrl: string;
   hostData: HostData;
   webinarData: WebinarData;
+  registrationForm: {
+    fields: Array<{
+      name: string;
+      label: string;
+      type: string;
+      required: boolean;
+    }>;
+  };
 }
 
 const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({ 
@@ -50,7 +60,9 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
   const [isRegistered, setIsRegistered] = useState<boolean>(false);
   const [countdown, setCountdown] = useState<string>('');
   const [formData, setFormData] = useState<FormData>({
-    fullName: '',
+    firstName: '',
+    surname: '',
+    email: '',
     country: '',
     occupation: '',
   });
@@ -115,10 +127,23 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between w-full px-4 md:px-8 lg:px-16 max-w-7xl mx-auto">
           <div className="w-full md:w-1/2 text-center md:text-left mb-8 md:mb-0">
-            <div className="bg-black bg-opacity-50 p-6 rounded-lg">
+            <div className="bg-black bg-opacity-70 p-6 rounded-lg backdrop-blur-sm">
               <h1 className="text-3xl md:text-5xl font-bold mb-4">{webinarData.title}</h1>
               <p className="text-lg md:text-xl mb-6">{webinarData.description}</p>
-              {!isRegistered && (
+              {isRegistered ? (
+                <>
+                  <p className="text-xl mb-2">Webinar starts in:</p>
+                  <div className="text-3xl font-bold mb-4 text-[#23AAC9]">{countdown}</div>
+                  {countdown === 'Webinar is live!' && (
+                    <Button 
+                      size="lg" 
+                      className="bg-[#23AAC9] hover:bg-[#1C89A2] text-white rounded-full px-8 py-3"
+                    >
+                      Join Webinar
+                    </Button>
+                  )}
+                </>
+              ) : (
                 <Button 
                   size="lg" 
                   className="bg-[#23AAC9] hover:bg-[#1C89A2] text-white rounded-full px-8 py-3"
@@ -145,28 +170,28 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
       </div>
 
       {/* Host Details */}
-      <div className="bg-[#393939] py-16 w-full">
+      <div className="bg-[#F5F5F5] py-16 w-full">
         <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16">
           <h2 className="text-3xl font-bold mb-8 text-center text-[#23AAC9]">Meet Your Host</h2>
           <div className="flex flex-col md:flex-row items-center justify-center md:space-x-8">
-            <div className="w-48 h-48 mb-4 md:mb-0">
+            <div className="w-48 h-48 mb-4 md:mb-0 rounded-full overflow-hidden flex-shrink-0">
               {hostData.imageUrl ? (
                 <img 
                   src={hostData.imageUrl} 
                   alt={hostData.name} 
-                  className="w-full h-full object-cover rounded-full"
+                  className="w-full h-full object-cover"
                 />
               ) : (
-                <div className="w-full h-full bg-[#525252] rounded-full flex items-center justify-center">
+                <div className="w-full h-full bg-[#E0E0E0] flex items-center justify-center">
                   <User size={64} className="text-[#23AAC9]" />
                 </div>
               )}
             </div>
             <div className="text-center md:text-left">
-              <h3 className="text-2xl font-semibold">{hostData.name}</h3>
-              <p className="text-lg text-[#23AAC9]">{hostData.qualifications}</p>
-              <p className="text-lg text-[#838383]">{hostData.specialty}</p>
-              <p className="mt-2 text-sm">{hostData.bio}</p>
+              <h3 className="text-2xl font-semibold text-[#1A1A1A]">{hostData.name}</h3>
+              <p className="text-lg text-[#1A1A1A]">{hostData.qualifications}</p>
+              <p className="text-lg text-[#4A4A4A]">{hostData.specialty}</p>
+              <p className="mt-2 text-sm text-[#1A1A1A]">{hostData.bio}</p>
             </div>
           </div>
         </div>
@@ -174,50 +199,71 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
 
       {/* Benefits Section */}
       <div className="bg-[#272727] py-16 w-full">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16">
-          <h2 className="text-3xl font-bold mb-12 text-center text-[#23AAC9]">What You'll Learn</h2>
-          {webinarData.benefits.map((benefit, index) => (
-            <div key={index} className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center mb-16 last:mb-0`}>
-              <div className="w-full md:w-1/3 mb-6 md:mb-0">
-                <img src={benefit.image} alt={benefit.title} className="rounded-lg shadow-lg w-full max-w-[200px] mx-auto" />
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-4xl font-bold mb-12 text-center">What You'll Learn</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {webinarData.benefits.map((benefit, index) => (
+              <div key={index} className="bg-[#393939] rounded-lg p-6 transform transition-all hover:scale-105">
+                <img src={benefit.image} alt={benefit.title} className="w-full h-40 object-cover rounded-lg mb-4" />
+                <h3 className="text-2xl font-semibold mb-2 text-[#23AAC9]">{benefit.title}</h3>
+                <p>{benefit.description}</p>
               </div>
-              <div className="w-full md:w-2/3 md:px-8">
-                <h3 className="text-2xl font-semibold mb-4 text-[#23AAC9]">{benefit.title}</h3>
-                <p className="text-lg">{benefit.description}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Registration Form */}
       {!isRegistered ? (
-        <div id="registration" className="bg-[#393939] py-16 w-full">
+        <div id="registration" className="bg-[#F5F5F5] py-16 w-full">
           <div className="max-w-md mx-auto px-4">
             <h2 className="text-3xl font-bold mb-8 text-center text-[#23AAC9]">Register Now</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <Label htmlFor="fullName" className="text-white">Full Name</Label>
+                <Label htmlFor="firstName" className="text-[#1A1A1A]">First Name</Label>
                 <Input 
-                  id="fullName" 
-                  name="fullName" 
-                  value={formData.fullName} 
+                  id="firstName" 
+                  name="firstName" 
+                  value={formData.firstName} 
                   onChange={handleInputChange} 
                   required 
-                  className="bg-[#525252] border-none text-white"
+                  className="bg-white border-[#CCCCCC] text-[#1A1A1A]"
                 />
               </div>
               <div>
-                <Label htmlFor="country" className="text-white">Country</Label>
+                <Label htmlFor="surname" className="text-[#1A1A1A]">Surname</Label>
+                <Input 
+                  id="surname" 
+                  name="surname" 
+                  value={formData.surname} 
+                  onChange={handleInputChange} 
+                  required 
+                  className="bg-white border-[#CCCCCC] text-[#1A1A1A]"
+                />
+              </div>
+              <div>
+                <Label htmlFor="email" className="text-[#1A1A1A]">Email</Label>
+                <Input 
+                  id="email" 
+                  name="email" 
+                  type="email"
+                  value={formData.email} 
+                  onChange={handleInputChange} 
+                  required 
+                  className="bg-white border-[#CCCCCC] text-[#1A1A1A]"
+                />
+              </div>
+              <div>
+                <Label htmlFor="country" className="text-[#1A1A1A]">Country</Label>
                 <Select 
                   name="country" 
                   onValueChange={(value) => setFormData(prev => ({ ...prev, country: value }))} 
                   required
                 >
-                  <SelectTrigger className="bg-[#525252] border-none text-white">
+                  <SelectTrigger className="bg-white border-[#CCCCCC] text-[#1A1A1A]">
                     <SelectValue placeholder="Select your country" />
                   </SelectTrigger>
-                  <SelectContent className="bg-[#525252] text-white">
+                  <SelectContent className="bg-white text-[#1A1A1A]">
                     <SelectItem value="us">United States</SelectItem>
                     <SelectItem value="uk">United Kingdom</SelectItem>
                     <SelectItem value="ca">Canada</SelectItem>
@@ -226,14 +272,14 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
                 </Select>
               </div>
               <div>
-                <Label htmlFor="occupation" className="text-white">Occupation</Label>
+                <Label htmlFor="occupation" className="text-[#1A1A1A]">Occupation</Label>
                 <Input 
                   id="occupation" 
                   name="occupation" 
                   value={formData.occupation} 
                   onChange={handleInputChange} 
                   required 
-                  className="bg-[#525252] border-none text-white"
+                  className="bg-white border-[#CCCCCC] text-[#1A1A1A]"
                 />
               </div>
               <Button type="submit" className="w-full bg-[#23AAC9] hover:bg-[#1C89A2] text-white rounded-full">Register</Button>
@@ -241,10 +287,10 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
           </div>
         </div>
       ) : (
-        <div className="bg-[#393939] py-16 w-full">
+        <div className="bg-[#F5F5F5] py-16 w-full">
           <div className="max-w-md mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-4 text-[#23AAC9]">You're Registered!</h2>
-            <p className="text-xl mb-4">Webinar starts in:</p>
+            <p className="text-xl mb-4 text-[#1A1A1A]">Webinar starts in:</p>
             <div className="text-4xl font-bold mb-8 text-[#23AAC9]">{countdown}</div>
             {countdown === 'Webinar is live!' && (
               <Button size="lg" className="bg-[#23AAC9] hover:bg-[#1C89A2] text-white rounded-full px-8 py-3">Join Webinar</Button>

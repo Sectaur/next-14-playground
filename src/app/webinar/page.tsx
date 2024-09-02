@@ -53,14 +53,14 @@ const WebinarLandingPage: React.FC<WebinarLandingPageProps> = ({ email, webinarD
   const hostData: HostData = {
     name: "Dr. Hament Pandya",
     qualifications: "MD, FRCR, FRANZCR",
-    specialty: "Consultant Radiologist, Specializing in Thoracic Imaging",
+    specialty: "Consultant Radiologist, Specializing in Head and Neck Imaging",
     bio: "Dr. Pandya is a renowned thoracic radiologist with over 15 years of experience. He is passionate about advancing radiological education and has authored numerous publications in the field."
   };
 
   // Dummy data for webinar details
   const webinarData: WebinarData = {
     title: "Advanced Techniques in Thoracic CT Interpretation",
-    description: "Join us for an in-depth exploration of cutting-edge CT interpretation techniques in thoracic imaging.",
+    description: "Join us for an in-depth exploration of cutting-edge CT interpretation techniques in Head and Neck Imaging.",
     benefits: [
       {
         title: "Enhanced Diagnostic Accuracy",
@@ -74,7 +74,7 @@ const WebinarLandingPage: React.FC<WebinarLandingPageProps> = ({ email, webinarD
       },
       {
         title: "Latest Research Insights",
-        description: "Stay updated with the most recent developments and research in thoracic imaging.",
+        description: "Stay updated with the most recent developments and research in Head and Neck Imaging.",
         image: "/api/placeholder/400/300" // Replace with actual image path
       }
     ]

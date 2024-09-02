@@ -2,25 +2,23 @@ import React from 'react';
 import WebinarLandingPageTemplate, { WebinarLandingPageProps } from '../components/(landing-page-templates)/WebinarLandingPageTemplate';
 
 const WebinarExample: React.FC = () => {
-  // Create a date 10 days from now at 2:00 PM UTC
-  const futureDate = new Date();
-  futureDate.setDate(futureDate.getDate() + 10);
-  futureDate.setUTCHours(14, 0, 0, 0);
+  // Create a date 30 seconds from now
+  const futureDate = new Date(Date.now() + 30000);
   
   const webinarProps: WebinarLandingPageProps = {
-    email: undefined, // or user's email if logged in
-    webinarDate: futureDate.getTime(), // Unix timestamp for the future date
+    email: "", // Added email
+    webinarDate: futureDate.getTime(), // Unix timestamp for 30 seconds from now
     backgroundImageUrl: "/neck-us.png",
     hostData: {
       name: "Dr. Hament Pandya",
       qualifications: "MD, FRCR, FRANZCR",
-      specialty: "Consultant Radiologist, Specializing in Thoracic Imaging",
+      specialty: "Consultant Radiologist, Specializing in Head and Neck Imaging",
       bio: "Dr. Pandya is a renowned thoracic radiologist with over 15 years of experience. He is passionate about advancing radiological education and has authored numerous publications in the field.",
       imageUrl: "/hp-photo.png"
     },
     webinarData: {
-      title: "Advanced Techniques in Thoracic CT Interpretation",
-      description: "Join us for an in-depth exploration of cutting-edge CT interpretation techniques in thoracic imaging.",
+      title: "Advanced Techniques in Head and Neck MRI",
+      description: "Join us for an in-depth exploration of cutting-edge MRI interpretation techniques in head and neck imaging.",
       benefits: [
         {
           title: "Enhanced Diagnostic Accuracy",
@@ -34,14 +32,23 @@ const WebinarExample: React.FC = () => {
         },
         {
           title: "Latest Research Insights",
-          description: "Stay updated with the most recent developments and research in thoracic imaging.",
+          description: "Stay updated with the most recent developments and research in Head and Neck Imaging.",
           image: "/parotid.png" // Replace with actual image path
         }
+      ]
+    },
+    registrationForm: {
+      fields: [
+        { name: 'firstName', label: 'First Name', type: 'text', required: true },
+        { name: 'surname', label: 'Surname', type: 'text', required: true },
+        { name: 'email', label: 'Email', type: 'email', required: true },
+        { name: 'country', label: 'Country', type: 'text', required: true },
+        { name: 'occupation', label: 'Occupation', type: 'text', required: true }
       ]
     }
   };
 
-  return <WebinarLandingPageTemplate {...webinarProps} />;
+  return (<WebinarLandingPageTemplate {...webinarProps} />);
 };
 
 export default WebinarExample;
