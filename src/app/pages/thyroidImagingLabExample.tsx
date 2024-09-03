@@ -39,13 +39,15 @@ const ThyroidImagingLabExample: React.FC = () => {
             <h3 className="text-xl leading-6 font-semibold text-gray-800">Meet Your Instructor</h3>
             <div className="mt-4 flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
               <div className="flex-shrink-0">
-                <Image
-                  src={mockOwnerData.imageSrc}
-                  alt={mockOwnerData.name}
-                  width={200}
-                  height={200}
-                  className="rounded-full object-cover shadow-md"
-                />
+                <div className="w-[140px] h-[140px] rounded-full overflow-hidden">
+                  <Image
+                    src={mockOwnerData.imageSrc}
+                    alt={mockOwnerData.name}
+                    width={140}
+                    height={140}
+                    className="object-cover w-full h-full shadow-md"
+                  />
+                </div>
               </div>
               <div className="text-center sm:text-left">
                 <h4 className="text-lg font-semibold text-gray-800">{mockOwnerData.name}</h4>
