@@ -10,6 +10,7 @@ import {
   BarChart,
   Zap,
   Headphones,
+  Video,
 } from "lucide-react";
 
 const LandingPageExample: React.FC = () => {
@@ -41,17 +42,16 @@ const LandingPageExample: React.FC = () => {
           imageSrc: "/neck-us.png",
         },
         {
-          icon: <Activity size={24} />,
+          icon: <Award size={24} />,
           title: "TI-RADS Practice Cases",
           description:
             "Improve your skills with Thyroid Imaging Reporting and Data System cases.",
           imageSrc: "/parotid.png",
         },
         {
-          icon: <Book size={24} />,
-          title: "Comprehensive Library",
-          description:
-            "Access a vast collection of radiology resources and case studies.",
+          icon: <Video size={24} />,
+          title: "Live Webinars",
+          description: "Join our live webinars!",
           imageSrc: "/parotid.png",
         },
         {
@@ -61,32 +61,12 @@ const LandingPageExample: React.FC = () => {
             "Engage with peers and experts in our active discussion forums.",
           imageSrc: "/neck-us.png",
         },
+
         {
-          icon: <Award size={24} />,
-          title: "Certification Prep",
+          icon: <Book size={24} />,
+          title: "Resources",
           description:
-            "Prepare for radiology certifications with targeted study materials.",
-          imageSrc: "/mri-brain.png", // Changed from parotid.png
-        },
-        {
-          icon: <BarChart size={24} />,
-          title: "Progress Tracking",
-          description:
-            "Monitor your learning progress with detailed analytics and insights.",
-          imageSrc: "/neck-us.png",
-        },
-        {
-          icon: <Zap size={24} />,
-          title: "Live Webinars",
-          description:
-            "Participate in live webinars led by renowned radiology experts.",
-          imageSrc: "/parotid.png",
-        },
-        {
-          icon: <Headphones size={24} />,
-          title: "Audio Lectures",
-          description:
-            "Listen to radiology lectures on-the-go for flexible learning.",
+            "Access a library of resources including textbooks and research papers.",
           imageSrc: "/neck-us.png",
         },
       ]}
