@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { User } from 'lucide-react';
 import MuxPlayer from "@mux/mux-player-react";
+import Header from "../(landing-page-components)/Header";
 
 export interface HostData {
   name: string;
@@ -48,6 +49,7 @@ export interface WebinarLandingPageProps {
       required: boolean;
     }>;
   };
+  headerLogo: string; // Add this line
 }
 
 const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({ 
@@ -55,7 +57,8 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
   webinarDate, 
   backgroundImageUrl, 
   hostData, 
-  webinarData 
+  webinarData,
+  headerLogo // Add this line
 }) => {
   const [isRegistered, setIsRegistered] = useState<boolean>(false);
   const [countdown, setCountdown] = useState<string>('');
@@ -119,7 +122,7 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
 
   return (
     <div className="flex flex-col min-h-screen bg-[#272727] text-white font-inter w-full">
-      {/* Hero Section */}
+      <Header logo={headerLogo} /> 
       <div 
         className="relative h-[50vh] bg-cover bg-center flex items-center justify-center w-full"
         style={{ backgroundImage: `url(${backgroundImageUrl})` }}

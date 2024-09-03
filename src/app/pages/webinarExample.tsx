@@ -6,6 +6,7 @@ const WebinarExample: React.FC = () => {
   const futureDate = new Date(Date.now() + 30000);
   
   const webinarProps: WebinarLandingPageProps = {
+    headerLogo: "/ResectaurLearningLogo.svg", // Add this line
     email: "", // Added email
     webinarDate: futureDate.getTime(), // Unix timestamp for 30 seconds from now
     backgroundImageUrl: "/neck-us.png",

@@ -27,27 +27,30 @@ const ThyroidImagingLabExample: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <LearningLabLandingTemplate onSubscribe={() => setIsModalOpen(true)} />
+    <div className="min-h-screen bg-white">
+      <LearningLabLandingTemplate 
+        onSubscribe={() => setIsModalOpen(true)} 
+        headerLogo={"/ResectaurLearningLogo.svg"}
+      />
       
-      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div className="mt-12 bg-white shadow sm:rounded-lg">
+      <main className="w-full px-4 sm:px-6 lg:px-8 py-6">
+        <div className="mt-12 bg-gray-50 shadow-sm rounded-lg">
           <div className="px-4 py-5 sm:p-6">
-            <h3 className="text-lg leading-6 font-medium text-gray-900">Meet Your Instructor</h3>
-            <div className="mt-4 flex items-start space-x-4">
+            <h3 className="text-xl leading-6 font-semibold text-gray-800">Meet Your Instructor</h3>
+            <div className="mt-4 flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
               <div className="flex-shrink-0">
                 <Image
                   src={mockOwnerData.imageSrc}
                   alt={mockOwnerData.name}
-                  width={150}
-                  height={150}
-                  className="rounded-full object-cover"
+                  width={200}
+                  height={200}
+                  className="rounded-full object-cover shadow-md"
                 />
               </div>
-              <div>
-                <h4 className="text-lg font-semibold">{mockOwnerData.name}</h4>
-                <p className="text-sm text-gray-500">{mockOwnerData.title}</p>
-                <p className="mt-2 text-sm text-gray-600">{mockOwnerData.bio}</p>
+              <div className="text-center sm:text-left">
+                <h4 className="text-lg font-semibold text-gray-800">{mockOwnerData.name}</h4>
+                <p className="text-md text-gray-600">{mockOwnerData.title}</p>
+                <p className="mt-2 text-gray-700">{mockOwnerData.bio}</p>
               </div>
             </div>
           </div>
