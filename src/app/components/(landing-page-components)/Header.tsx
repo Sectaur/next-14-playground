@@ -16,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
     { name: "Home", href: "/" },
     { name: "Videos", href: "/videos" },
     { name: "Webinar", href: "/webinar" },
-    { name: "Contact", href: "#" },
+    { name: "Lab", href: "/learningLab" },
   ];
 
   return (
