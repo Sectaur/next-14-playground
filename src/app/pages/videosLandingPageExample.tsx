@@ -54,6 +54,30 @@ const VideosLandingPageExample: React.FC = () => {
           imageSrc: "/mri-brain.png",
           action: () => router.push('/video/4'),
         },
+        {
+          id: 5,
+          icon: <Play size={24} />,
+          title: "Brain Tumor Analysis",
+          description: "Male aged 55 with suspected meningioma",
+          imageSrc: "/mri-brain.png",
+          action: () => router.push('/video/5'),
+        },
+        {
+          id: 6,
+          icon: <Play size={24} />,
+          title: "Parotid Gland Lesions",
+          description: "Female aged 42 with parotid swelling",
+          imageSrc: "/parotid.png",
+          action: () => router.push('/video/6'),
+        },
+        {
+          id: 7,
+          icon: <Play size={24} />,
+          title: "Multiple Sclerosis Imaging",
+          description: "Male aged 28 with neurological symptoms",
+          imageSrc: "/mri-brain.png",
+          action: () => router.push('/video/7'),
+        },
       ]}
       ctaTitle="Ready to Enhance Your Radiology Skills?"
       ctaDescription="Join our Learning platform today and take your expertise to the next level."
