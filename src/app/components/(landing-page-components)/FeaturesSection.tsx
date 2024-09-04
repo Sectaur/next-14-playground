@@ -6,6 +6,8 @@ interface FeatureCardProps {
   title: string;
   description: string;
   imageSrc: string;
+  id: number; // Add this line
+  onClick: (id: number) => void; // Add this line
 }
 
 const FeatureCard: React.FC<FeatureCardProps> = ({
@@ -13,8 +15,13 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   title,
   description,
   imageSrc,
+  id,
+  onClick,
 }) => (
-  <Card className="bg-[#272727] border-[#393939] transition-all duration-300 ease-in-out hover:scale-[1.02] hover:bg-[#323232] hover:shadow-lg transform scale-70">
+  <Card 
+    className="bg-[#272727] border-[#393939] transition-all duration-300 ease-in-out hover:scale-[1.02] hover:bg-[#323232] hover:shadow-lg transform scale-70"
+    onClick={() => onClick(id)} // Add this line
+  >
     <CardContent className="p-4">
       <div className="text-[#23AAC9] mb-3">{icon}</div>
       <h3 className="text-base font-semibold mb-2 text-white hover:text-[#23AAC9] transition-colors duration-300 ease-in-out">
@@ -34,12 +41,14 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
 
 interface FeaturesSectionProps {
   title: string;
-  features: Array<FeatureCardProps>;
+  features: Array<Omit<FeatureCardProps, 'onClick'>>;
+  onCardClick: (id: number) => void; // Add this line
 }
 
 const FeaturesSection: React.FC<FeaturesSectionProps> = ({
   title,
   features,
+  onCardClick,
 }) => {
   return (
     <section className="w-full bg-[#070707]">
@@ -47,7 +56,7 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({
         <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center py-8 text-white">{title}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {features.map((feature, index) => (
-            <FeatureCard key={index} {...feature} />
+            <FeatureCard key={index} {...feature} onClick={onCardClick} />
           ))}
         </div>
       </div>

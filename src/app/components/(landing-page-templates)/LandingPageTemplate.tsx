@@ -23,6 +23,7 @@ interface LandingPageTemplateProps {
     title: string;
     description: string;
     imageSrc: string;
+    id: number; // Add this line
   }>;
   ctaTitle: string;
   ctaDescription: string;
@@ -46,12 +47,16 @@ const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({
     router.push('/webinar');
   };
 
+  const handleCardClick = (id: number) => {
+    router.push(`/video/${id}`);
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-[#070707] text-white w-full">
       <Header logo={headerLogo} />
       <HeroSection {...heroSection} onCtaClick={handleCtaClick} />
       <div className="flex-grow w-full">
-        <FeaturesSection title={featuresTitle} features={features} />
+        <FeaturesSection title={featuresTitle} features={features} onCardClick={handleCardClick} />
         <CTASection
           title={ctaTitle}
           description={ctaDescription}

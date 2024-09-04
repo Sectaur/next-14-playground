@@ -28,6 +28,7 @@ const LandingPageExample: React.FC = () => {
       featuresTitle="Explore Our Features"
       features={[
         {
+          id: 1,
           icon: <Play size={24} />,
           title: "Interactive Videos",
           description:
@@ -35,6 +36,7 @@ const LandingPageExample: React.FC = () => {
           imageSrc: "/mri-brain.png", // Changed from parotid.png
         },
         {
+          id: 2,
           icon: <FileQuestion size={24} />,
           title: "Interactive Quizzes",
           description:
@@ -42,6 +44,7 @@ const LandingPageExample: React.FC = () => {
           imageSrc: "/neck-us.png",
         },
         {
+          id: 3,
           icon: <Award size={24} />,
           title: "TI-RADS Practice Cases",
           description:
@@ -49,12 +52,14 @@ const LandingPageExample: React.FC = () => {
           imageSrc: "/parotid.png",
         },
         {
+          id: 4,
           icon: <Video size={24} />,
           title: "Live Webinars",
           description: "Join our live webinars!",
           imageSrc: "/parotid.png",
         },
         {
+          id: 5,
           icon: <Users size={24} />,
           title: "Community Forums",
           description:
@@ -63,6 +68,7 @@ const LandingPageExample: React.FC = () => {
         },
 
         {
+          id: 6,
           icon: <Book size={24} />,
           title: "Resources",
           description:

@@ -32,6 +32,7 @@ const VideosLandingPageExample: React.FC = () => {
           description:
             "Female aged 34 with right sided neck lump",
           imageSrc: "/mri-brain.png", // Changed from parotid.png
+          id: 1, // Add this line
         },
         {
           icon: <Play size={24} />,
@@ -39,6 +40,7 @@ const VideosLandingPageExample: React.FC = () => {
           description:
             "Male aged 45 with suspicious thyroid nodule",
           imageSrc: "/parotid.png",
+          id: 2, // Add this line
         },
         {
           icon: <Play size={24} />,
@@ -46,6 +48,7 @@ const VideosLandingPageExample: React.FC = () => {
           description:
             "Female aged 52 with parotid gland mass",
           imageSrc: "/mri-brain.png", // Changed from parotid.png
+          id: 3, // Add this line
         },
         {
           icon: <Play size={24} />,
@@ -53,6 +56,7 @@ const VideosLandingPageExample: React.FC = () => {
           description:
             "Male aged 28 with enlarged cervical lymph nodes",
           imageSrc: "/parotid.png",
+          id: 4, // Add this line
         },
         {
           icon: <Play size={24} />,
@@ -60,6 +64,7 @@ const VideosLandingPageExample: React.FC = () => {
           description:
             "Female aged 61 with hoarseness and suspected laryngeal lesion",
           imageSrc: "/parotid.png",
+          id: 5, // Add this line
         },
       
       ]}
