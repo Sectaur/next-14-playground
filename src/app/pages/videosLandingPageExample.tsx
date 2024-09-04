@@ -27,10 +27,33 @@ const VideosLandingPageExample: React.FC = () => {
           icon: <Play size={24} />,
           title: "Learn about Neck Lumps",
           description: "Female aged 34 with right sided neck lump",
-          imageSrc: "/mri-brain.png",
+          imageSrc: "/parotid.png",
           action: () => router.push('/video/1'),
         },
-        // ... other video features
+        {
+          id: 2,
+          icon: <Play size={24} />,
+          title: "Chest X-ray Interpretation",
+          description: "Male aged 58 with suspected pneumonia",
+          imageSrc: "/mri-brain.png",
+          action: () => router.push('/video/2'),
+        },
+        {
+          id: 3,
+          icon: <Play size={24} />,
+          title: "Abdominal CT Analysis",
+          description: "Female aged 45 with acute abdominal pain",
+          imageSrc: "/parotid.png",
+          action: () => router.push('/video/3'),
+        },
+        {
+          id: 4,
+          icon: <Play size={24} />,
+          title: "MRI Brain Tumor Assessment",
+          description: "Male aged 62 with suspected glioblastoma",
+          imageSrc: "/mri-brain.png",
+          action: () => router.push('/video/4'),
+        },
       ]}
       ctaTitle="Ready to Enhance Your Radiology Skills?"
       ctaDescription="Join our Learning platform today and take your expertise to the next level."
