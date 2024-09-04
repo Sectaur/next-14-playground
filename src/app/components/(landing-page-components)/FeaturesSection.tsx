@@ -1,13 +1,17 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 
-interface FeatureCardProps {
+interface Feature {
   icon: React.ReactNode;
   title: string;
   description: string;
   imageSrc: string;
-  id: number; // Add this line
-  onClick: (id: number) => void; // Add this line
+  id: number;
+  action?: () => void;
+}
+
+interface FeatureCardProps extends Feature {
+  onClick: (id: number) => void;
 }
 
 const FeatureCard: React.FC<FeatureCardProps> = ({
@@ -20,7 +24,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
 }) => (
   <Card 
     className="bg-[#272727] border-[#393939] transition-all duration-300 ease-in-out hover:scale-[1.02] hover:bg-[#323232] hover:shadow-lg transform scale-70"
-    onClick={() => onClick(id)} // Add this line
+    onClick={() => onClick(id)}
   >
     <CardContent className="p-4">
       <div className="text-[#23AAC9] mb-3">{icon}</div>
@@ -41,8 +45,8 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
 
 interface FeaturesSectionProps {
   title: string;
-  features: Array<Omit<FeatureCardProps, 'onClick'>>;
-  onCardClick: (id: number) => void; // Add this line
+  features: Feature[];
+  onCardClick: (id: number) => void;
 }
 
 const FeaturesSection: React.FC<FeaturesSectionProps> = ({
@@ -55,8 +59,8 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({
       <div className="w-full px-4 sm:px-6 lg:px-8 max-w-none">
         <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center py-8 text-white">{title}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {features.map((feature, index) => (
-            <FeatureCard key={index} {...feature} onClick={onCardClick} />
+          {features.map((feature) => (
+            <FeatureCard key={feature.id} {...feature} onClick={onCardClick} />
           ))}
         </div>
       </div>

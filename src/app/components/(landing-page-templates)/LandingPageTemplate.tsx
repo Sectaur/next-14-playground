@@ -1,5 +1,4 @@
 import React from "react";
-import { useRouter } from 'next/navigation';
 import Header from "../(landing-page-components)/Header";
 import HeroSection from "../(landing-page-components)/HeroSection";
 import FeaturesSection from "../(landing-page-components)/FeaturesSection";
@@ -14,21 +13,32 @@ interface HeroSectionProps {
   videoPlaybackId: string;
 }
 
+interface Feature {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  imageSrc: string;
+  id: number;
+  action?: () => void; // Add this line
+}
+
 interface LandingPageTemplateProps {
   headerLogo: string;
   heroSection: HeroSectionProps;
   featuresTitle: string;
-  features: Array<{
-    icon: React.ReactNode;
-    title: string;
-    description: string;
-    imageSrc: string;
-    id: number; // Add this line
-  }>;
+  features: Feature[];
   ctaTitle: string;
   ctaDescription: string;
   ctaButtonText: string;
   footerText: string;
+  onCtaClick: () => void; // Add this line
+}
+
+interface CTASectionProps {
+  title: string;
+  description: string;
+  buttonText: string;
+  onCtaClick: () => void; // Changed from onClick to onCtaClick
 }
 
 const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({
@@ -40,27 +50,26 @@ const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({
   ctaDescription,
   ctaButtonText,
   footerText,
+  onCtaClick, // Add this line
 }) => {
-  const router = useRouter();
-
-  const handleCtaClick = () => {
-    router.push('/webinar');
-  };
-
   const handleCardClick = (id: number) => {
-    router.push(`/video/${id}`);
+    const feature = features.find(f => f.id === id);
+    if (feature?.action) {
+      feature.action();
+    }
   };
 
   return (
     <div className="flex flex-col min-h-screen bg-[#070707] text-white w-full">
       <Header logo={headerLogo} />
-      <HeroSection {...heroSection} onCtaClick={handleCtaClick} />
+      <HeroSection {...heroSection} onCtaClick={onCtaClick} />
       <div className="flex-grow w-full">
         <FeaturesSection title={featuresTitle} features={features} onCardClick={handleCardClick} />
         <CTASection
           title={ctaTitle}
           description={ctaDescription}
           buttonText={ctaButtonText}
+          onCtaClick={onCtaClick} // Changed from onClick to onCtaClick
         />
       </div>
       <Footer text={footerText} />
