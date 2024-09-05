@@ -3,7 +3,7 @@ import WebinarLandingPageTemplate, { WebinarLandingPageProps } from '../componen
 
 const WebinarExample: React.FC = () => {
   // Create a date 30 seconds from now
-  const futureDate = new Date(Date.now() + 30000);
+  const futureDate = new Date(Date.now() + 50000);
   
   const webinarProps: WebinarLandingPageProps = {
     headerLogo: "/ResectaurLearningLogo.svg", // Add this line
