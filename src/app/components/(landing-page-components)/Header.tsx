@@ -9,11 +9,12 @@ import { Input } from "@/components/ui/input";
 
 interface HeaderProps {
   logo: string;
+  isAuthenticated: boolean;
+  onAuthButtonClick: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ logo }) => {
+const Header: React.FC<HeaderProps> = ({ logo, isAuthenticated, onAuthButtonClick }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,14 +30,21 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
     e.preventDefault();
     // Mock authentication logic
     if (email && password) {
-      setIsAuthenticated(true);
+      onAuthButtonClick(); // Call the parent's auth function
       setIsLoginModalOpen(false);
     }
   };
 
   const handleLogout = () => {
-    setIsAuthenticated(false);
-    // Add any additional logout logic here (e.g., clearing tokens, redirecting)
+    onAuthButtonClick(); // Call the parent's auth function for logout
+  };
+
+  const handleAuthButtonClick = () => {
+    if (isAuthenticated) {
+      handleLogout();
+    } else {
+      setIsLoginModalOpen(true);
+    }
   };
 
   return (

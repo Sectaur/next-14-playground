@@ -84,6 +84,8 @@ const VideosLandingPageExample: React.FC = () => {
       ctaButtonText="Get Started for Free"
       footerText="© 2024 Learning Platform. All rights reserved."
       onCtaClick={handleCtaClick}
+      isAuthenticated={false} // Add this line
+      onAuthButtonClick={() => router.push('/login')} // Add this line
     />
   );
 };

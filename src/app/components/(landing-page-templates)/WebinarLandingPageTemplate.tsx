@@ -50,6 +50,8 @@ export interface WebinarLandingPageProps {
     }>;
   };
   headerLogo: string; // Add this line
+  isAuthenticated: boolean;
+  onAuthButtonClick: () => void;
 }
 
 const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({ 
@@ -58,7 +60,9 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
   backgroundImageUrl, 
   hostData, 
   webinarData,
-  headerLogo // Add this line
+  headerLogo,
+  isAuthenticated,
+  onAuthButtonClick
 }) => {
   const [isRegistered, setIsRegistered] = useState<boolean>(false);
   const [countdown, setCountdown] = useState<string>('');
@@ -122,7 +126,7 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
 
   return (
     <div className="flex flex-col min-h-screen bg-[#272727] text-white font-inter w-full">
-      <Header logo={headerLogo} /> 
+      <Header logo={headerLogo} isAuthenticated={isAuthenticated} onAuthButtonClick={onAuthButtonClick} /> 
       <div 
         className="relative h-[50vh] bg-cover bg-center flex items-center justify-center w-full"
         style={{ backgroundImage: `url(${backgroundImageUrl})` }}
@@ -152,7 +156,7 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
                   className="bg-[#23AAC9] hover:bg-[#1C89A2] text-white rounded-full px-8 py-3"
                   onClick={() => document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' })}
                 >
-                  Register Now
+                  Register For Free
                 </Button>
               )}
             </div>

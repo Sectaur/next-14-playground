@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import Header from "../(landing-page-components)/Header";
 import HeroSection from "../(landing-page-components)/HeroSection";
 import FeaturesSection from "../(landing-page-components)/FeaturesSection";
@@ -31,7 +32,9 @@ interface LandingPageTemplateProps {
   ctaDescription: string;
   ctaButtonText: string;
   footerText: string;
-  onCtaClick: () => void; // Add this line
+  onCtaClick: () => void;
+  isAuthenticated: boolean; // Add this line
+  onAuthButtonClick: () => void; // Add this line
 }
 
 interface CTASectionProps {
@@ -50,7 +53,9 @@ const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({
   ctaDescription,
   ctaButtonText,
   footerText,
-  onCtaClick, // Add this line
+  onCtaClick,
+  isAuthenticated, // Add this line
+  onAuthButtonClick, // Add this line
 }) => {
   const handleCardClick = (id: number) => {
     const feature = features.find(f => f.id === id);
@@ -61,7 +66,11 @@ const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({
 
   return (
     <div className="flex flex-col min-h-screen bg-[#070707] text-white w-full">
-      <Header logo={headerLogo} />
+      <Header 
+        logo={headerLogo} 
+        isAuthenticated={isAuthenticated} 
+        onAuthButtonClick={onAuthButtonClick}
+      />
       <HeroSection {...heroSection} onCtaClick={onCtaClick} />
       <div className="flex-grow w-full">
         <FeaturesSection title={featuresTitle} features={features} onCardClick={handleCardClick} />

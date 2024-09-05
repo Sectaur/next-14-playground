@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import LandingPageTemplate from "../components/(landing-page-templates)/LandingPageTemplate";
+import LandingPageTemplate from '../components/(landing-page-templates)/LandingPageTemplate';
 import { Play, FileQuestion, Activity, Book, Users, Award, BarChart, Zap, Headphones, Video } from "lucide-react";
 
 const LandingPageExample: React.FC = () => {
   const router = useRouter();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const handleCtaClick = () => {
     router.push('/webinar');
+  };
+
+  const handleAuthButtonClick = () => {
+    if (isAuthenticated) {
+      // Implement logout logic
+      setIsAuthenticated(false);
+    } else {
+      // Implement login logic
+      setIsAuthenticated(true);
+    }
   };
 
   return (
@@ -16,7 +27,7 @@ const LandingPageExample: React.FC = () => {
       heroSection={{
         title: "Master Radiology with Interactive Learning",
         description: "Join our upcoming webinar: 'Advanced Techniques in CT Interpretation'",
-        ctaText: "Sign Up for Webinar",
+        ctaText: isAuthenticated ? "Register Now" : "Learn More",
         backgroundImage: "/neck-us.png",
         videoPlaybackId: "YOUR_MUX_PLAYBACK_ID",
       }}
@@ -76,6 +87,8 @@ const LandingPageExample: React.FC = () => {
       ctaButtonText="Get Started for Free"
       footerText="© 2024 Learning Platform. All rights reserved."
       onCtaClick={handleCtaClick}
+      isAuthenticated={isAuthenticated}
+      onAuthButtonClick={handleAuthButtonClick}
     />
   );
 };
