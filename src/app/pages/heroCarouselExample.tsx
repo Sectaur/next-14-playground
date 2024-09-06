@@ -24,7 +24,7 @@ const HeroCarouselExample: React.FC = () => {
             title: "Master Radiology with Interactive Learning",
             description:
               "Join our upcoming webinar: 'Advanced Techniques in CT Interpretation'",
-            ctaText: "Sign Up for Webinar",
+            ctaText: "Learn More",
             backgroundImage: "/neck-us.png",
             videoPlaybackId: "YOUR_MUX_PLAYBACK_ID_1",
           },
