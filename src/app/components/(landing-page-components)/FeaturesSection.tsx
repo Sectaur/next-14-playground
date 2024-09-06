@@ -23,7 +23,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   onClick,
 }) => (
   <Card 
-    className="bg-[#272727] border-[#393939] transition-all duration-300 ease-in-out hover:scale-[1.02] hover:bg-[#323232] hover:shadow-lg transform scale-70 h-full flex flex-col"
+    className="bg-[#272727] border-[#393939] transition-all duration-300 ease-in-out hover:scale-[1.02] hover:bg-[#121212] hover:shadow-lg transform scale-70 h-full flex flex-col"
     onClick={() => onClick(id)}
   >
     <CardContent className="p-6 flex flex-col h-full">
@@ -57,7 +57,7 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({
   onCardClick,
 }) => {
   return (
-    <section className="w-full bg-[#070707] py-12 md:py-16 lg:py-20">
+    <section className="w-full bg-[#393939] py-12 md:py-16 lg:py-20">
       <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 max-w-8xl mx-auto">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 md:mb-12 text-center text-white">{title}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 lg:gap-10">

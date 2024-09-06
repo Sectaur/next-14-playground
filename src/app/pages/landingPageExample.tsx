@@ -45,6 +45,7 @@ const LandingPageExample: React.FC = () => {
           description:
             "Improve your skills with Thyroid Imaging Reporting and Data System cases.",
           imageSrc: "/parotid.png",
+          action: () => router.push('/tiradsPractice'), // Direct to videosLandingPageExample
         },
         {
           id: 4,
@@ -52,6 +53,7 @@ const LandingPageExample: React.FC = () => {
           title: "Live Webinars",
           description: "Join our live webinars!",
           imageSrc: "/parotid.png",
+          action: () => router.push('/webinar'), // Direct to videosLandingPageExample
         },
         {
           id: 5,
