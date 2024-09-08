@@ -82,7 +82,7 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
         </div>
         <Button
           variant="outline"
-          className="bg-[#272727] text-[#23AAC9] border-[#23AAC9] hover:bg-[#23AAC9] hover:text-[#272727] rounded-full transition-colors duration-300 text-sm px-3 py-1"
+          className="bg-black text-[#23AAC9] border-[#23AAC9] hover:bg-[#23AAC9] hover:text-[#272727] rounded-full transition-colors duration-300 text-sm px-3 py-1"
         >
           Login
         </Button>

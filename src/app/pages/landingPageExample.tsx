@@ -16,7 +16,7 @@ const LandingPageExample: React.FC = () => {
       heroSection={{
         title: "Master Radiology with Interactive Learning",
         description: "Join our upcoming webinar: 'Advanced Techniques in CT Interpretation'",
-        ctaText: "Sign Up for Webinar",
+        ctaText: "Learn more",
         backgroundImage: "/neck-us.png",
         videoPlaybackId: "YOUR_MUX_PLAYBACK_ID",
       }}
@@ -25,7 +25,7 @@ const LandingPageExample: React.FC = () => {
         {
           id: 1,
           icon: <Play size={24} />,
-          title: "Interactive Videos",
+          title: "Case Tutorials",
           description: "Watch educational content alongside medical images for hands-on learning.",
           imageSrc: "/mri-brain.png",
           action: () => router.push('/videos'), // Direct to videosLandingPageExample
@@ -74,7 +74,7 @@ const LandingPageExample: React.FC = () => {
       ctaTitle="Ready to Enhance Your Radiology Skills?"
       ctaDescription="Join our Learning platform today and take your expertise to the next level."
       ctaButtonText="Get Started for Free"
-      footerText="© 2024 Learning Platform. All rights reserved."
+      footerText="© 2024 Resectaur. All rights reserved."
       onCtaClick={handleCtaClick}
     />
   );

@@ -36,7 +36,7 @@ const courses: Course[] = [
     status: "live",
   },
   {
-    title: "Interactive Videos",
+    title: "Case Tutorials",
     description: "Follow along with interactive thyroid ultrasound videos",
     imageUrl: "/parotid.png",
     status: "draft",

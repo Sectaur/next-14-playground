@@ -31,6 +31,7 @@ interface LandingPageTemplateProps {
   ctaDescription: string;
   ctaButtonText: string;
   footerText: string;
+  showHeroSection?: boolean;
   onCtaClick: () => void; // Add this line
 }
 
@@ -51,6 +52,7 @@ const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({
   ctaButtonText,
   footerText,
   onCtaClick, // Add this line
+  showHeroSection = true,
 }) => {
   const handleCardClick = (id: number) => {
     const feature = features.find(f => f.id === id);
@@ -62,7 +64,7 @@ const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({
   return (
     <div className="flex flex-col min-h-screen bg-[#070707] text-white w-full">
       <Header logo={headerLogo} />
-      <HeroSection {...heroSection} onCtaClick={onCtaClick} />
+      {showHeroSection && <HeroSection {...heroSection} onCtaClick={onCtaClick} />}
       <div className="flex-grow w-full">
         <FeaturesSection title={featuresTitle} features={features} onCardClick={handleCardClick} />
         <CTASection

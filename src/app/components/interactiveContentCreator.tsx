@@ -58,7 +58,7 @@ const InteractiveContentCreator: React.FC = () => {
   const landingPages: LandingPage[] = [
     { 
       id: 1, 
-      title: 'Interactive Videos',
+      title: 'Case Tutorials',
       features: [
         {
           icon: <Play size={24} />,

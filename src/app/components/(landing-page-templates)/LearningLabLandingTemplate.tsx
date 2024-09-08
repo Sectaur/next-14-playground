@@ -11,7 +11,7 @@ interface LearningLabLandingTemplateProps {
 
 const LearningLabLandingTemplate: React.FC<LearningLabLandingTemplateProps> = ({ onSubscribe, headerLogo }) => {
   const features = [
-    { icon: <Video className="h-6 w-6" />, title: 'Interactive Videos', description: 'Learn through engaging video content' },
+    { icon: <Video className="h-6 w-6" />, title: 'Case Tutorials', description: 'Learn through engaging video content' },
     { icon: <FileText className="h-6 w-6" />, title: 'Case Studies', description: 'Analyze real-world thyroid imaging cases' },
     { icon: <Users className="h-6 w-6" />, title: 'Expert-led Discussions', description: 'Participate in forums with leading radiologists' },
     { icon: <Calendar className="h-6 w-6" />, title: 'Live Webinars', description: 'Attend scheduled live learning sessions' },

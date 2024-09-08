@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { User } from 'lucide-react';
 import MuxPlayer from "@mux/mux-player-react";
 import Header from "../(landing-page-components)/Header";
+import EventDateModal from '../(landing-page-components)/EventDateModal';
 
 export interface HostData {
   name: string;
@@ -58,7 +59,7 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
   backgroundImageUrl, 
   hostData, 
   webinarData,
-  headerLogo // Add this line
+  headerLogo,
 }) => {
   const [isRegistered, setIsRegistered] = useState<boolean>(false);
   const [countdown, setCountdown] = useState<string>('');
@@ -69,6 +70,7 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
     country: '',
     occupation: '',
   });
+  const [isDateModalOpen, setIsDateModalOpen] = useState(false);
 
   useEffect(() => {
     if (email) {
@@ -120,6 +122,27 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
     });
   };
 
+  const handleRegisterClick = () => {
+    setIsDateModalOpen(true);
+  };
+
+  const handleDateSelect = (selectedDate: number) => {
+    setIsDateModalOpen(false);
+    // Log the selected date
+    console.log('Selected event date:', new Date(selectedDate).toLocaleString());
+    // Update webinarDate with the selected date
+    // You might want to update this in your parent component or through a context
+    // For now, we'll just update it locally
+    webinarDate = selectedDate;
+    document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // Add this mock data for event dates
+  const mockEventDates = [
+    new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).getTime(), // 7 days from now
+    new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).getTime() // 14 days from now
+  ];
+
   return (
     <div className="flex flex-col min-h-screen bg-[#272727] text-white font-inter w-full">
       <Header logo={headerLogo} /> 
@@ -150,7 +173,7 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
                 <Button 
                   size="lg" 
                   className="bg-[#23AAC9] hover:bg-[#1C89A2] text-white rounded-full px-8 py-3"
-                  onClick={() => document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={handleRegisterClick}
                 >
                   Register Now
                 </Button>
@@ -301,6 +324,13 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
           </div>
         </div>
       )}
+
+      <EventDateModal
+        isOpen={isDateModalOpen}
+        onClose={() => setIsDateModalOpen(false)}
+        onDateSelect={handleDateSelect}
+        dates={mockEventDates} // Use mockEventDates here
+      />
     </div>
   );
 };
