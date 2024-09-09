@@ -355,23 +355,21 @@ const MockedTIRADSCalculator: React.FC = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-4">
-                <div className="grid grid-cols-1 gap-2">
+                <div className="grid grid-cols-2 gap-2">
                   {category.features.map((feature) => (
                     <Button
                       key={feature.name}
                       onClick={() =>
                         handleFeatureChange(category.name, feature.name)
                       }
-                      className={`w-full justify-start text-left px-4 py-2 rounded-lg text-sm ${
+                      className={`h-16 flex flex-col items-start justify-center px-2 py-1 rounded-lg ${
                         selectedFeatures[category.name]?.includes(feature.name)
-                          ? "bg-[#23aac9] text-[rgb(244,244,245)]"
-                          : "bg-zinc-400 text-[#272727] hover:bg-[#23aac9] hover:text-[rgb(244,244,245)]"
+                          ? "bg-[#23aac9] text-white"
+                          : "bg-zinc-700 text-zinc-100 hover:bg-[#23aac9] hover:text-white"
                       }`}
                     >
-                      <span className="truncate">{feature.name}</span>
-                      <span className="ml-1 whitespace-nowrap">
-                        ({feature.points} pts)
-                      </span>
+                      <span className="truncate w-full text-left text-sm font-semibold">{feature.name}</span>
+                      <span className="text-xs mt-1 opacity-80">({feature.points} pts)</span>
                     </Button>
                   ))}
                 </div>
