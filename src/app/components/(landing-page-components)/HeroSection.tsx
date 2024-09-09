@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import MuxPlayer from "@mux/mux-player-react";

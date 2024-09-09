@@ -294,17 +294,17 @@ const MockedTIRADSCalculator: React.FC = () => {
       </h1>
 
       {!isSubmitted && (
-        <Card className="mx-2 mb-4 bg-[#272727] border-[#23aac9]">
-          <CardHeader className="p-4">
-            <CardTitle className="text-[rgb(244,244,245)] text-lg font-inter">
+        <Card className="mx-2 mb-4 bg-[#1a1a1a] border-[#23aac9] shadow-lg">
+          <CardHeader className="p-4 bg-gradient-to-r from-[#23aac9] to-[#1e8fa6]">
+            <CardTitle className="text-[rgb(244,244,245)] text-xl font-inter">
               Case Details
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-4 text-sm text-zinc-300 font-inter">
+          <CardContent className="p-4 text-lg text-zinc-300 font-inter">
             <p className="mb-2">
               49 year old lady with right sided thyroid lesion
             </p>
-            <p className="font-semibold">
+            <p className="font-semibold text-lg text-[#23aac9]">
               What is the TIRADS classification for the nodule on the right?
             </p>
           </CardContent>
