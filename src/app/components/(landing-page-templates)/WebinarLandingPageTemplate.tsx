@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { User } from 'lucide-react';
 import MuxPlayer from "@mux/mux-player-react";
 import Header from "../(landing-page-components)/Header";
@@ -28,28 +25,12 @@ export interface WebinarData {
   benefits: Benefit[];
 }
 
-interface FormData {
-  firstName: string;
-  surname: string;
-  email: string;
-  country: string;
-  occupation: string;
-}
-
 export interface WebinarLandingPageProps {
   email?: string;
   webinarDate: number;
   backgroundImageUrl: string;
   hostData: HostData;
   webinarData: WebinarData;
-  registrationForm: {
-    fields: Array<{
-      name: string;
-      label: string;
-      type: string;
-      required: boolean;
-    }>;
-  };
   headerLogo: string; // Add this line
 }
 
@@ -63,13 +44,6 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
 }) => {
   const [isRegistered, setIsRegistered] = useState<boolean>(false);
   const [countdown, setCountdown] = useState<string>('');
-  const [formData, setFormData] = useState<FormData>({
-    firstName: '',
-    surname: '',
-    email: '',
-    country: '',
-    occupation: '',
-  });
   const [isDateModalOpen, setIsDateModalOpen] = useState(false);
 
   useEffect(() => {
@@ -99,29 +73,6 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
     return () => clearInterval(timer);
   }, [webinarDate]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    setIsRegistered(true);
-  };
-
-  const formatWebinarDate = (timestamp: number): string => {
-    const date = new Date(timestamp);
-    return date.toLocaleString('en-US', { 
-      weekday: 'long', 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric', 
-      hour: '2-digit', 
-      minute: '2-digit',
-      timeZoneName: 'short'
-    });
-  };
-
   const handleRegisterClick = () => {
     setIsDateModalOpen(true);
   };
@@ -131,10 +82,8 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
     // Log the selected date
     console.log('Selected event date:', new Date(selectedDate).toLocaleString());
     // Update webinarDate with the selected date
-    // You might want to update this in your parent component or through a context
-    // For now, we'll just update it locally
     webinarDate = selectedDate;
-    document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' });
+    setIsRegistered(true);
   };
 
   // Add this mock data for event dates
@@ -158,7 +107,7 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
               <p className="text-lg md:text-xl mb-6">{webinarData.description}</p>
               {isRegistered ? (
                 <>
-                  <p className="text-xl mb-2">Webinar starts in:</p>
+                  <p className="text-xl mb-2">You're registered ! Webinar starts in:</p>
                   <div className="text-3xl font-bold mb-4 text-[#23AAC9]">{countdown}</div>
                   {countdown === 'Webinar is live!' && (
                     <Button 
@@ -175,7 +124,7 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
                   className="bg-[#23AAC9] hover:bg-[#1C89A2] text-white rounded-full px-8 py-3"
                   onClick={handleRegisterClick}
                 >
-                  Register Now
+                  Select Event Date
                 </Button>
               )}
             </div>
@@ -241,75 +190,16 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
 
       {/* Registration Form */}
       {!isRegistered ? (
-        <div id="registration" className="bg-[#F5F5F5] py-16 w-full">
-          <div className="max-w-md mx-auto px-4">
-            <h2 className="text-3xl font-bold mb-8 text-center text-[#23AAC9]">Register Now</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <Label htmlFor="firstName" className="text-[#1A1A1A]">First Name</Label>
-                <Input 
-                  id="firstName" 
-                  name="firstName" 
-                  value={formData.firstName} 
-                  onChange={handleInputChange} 
-                  required 
-                  className="bg-white border-[#CCCCCC] text-[#1A1A1A]"
-                />
-              </div>
-              <div>
-                <Label htmlFor="surname" className="text-[#1A1A1A]">Surname</Label>
-                <Input 
-                  id="surname" 
-                  name="surname" 
-                  value={formData.surname} 
-                  onChange={handleInputChange} 
-                  required 
-                  className="bg-white border-[#CCCCCC] text-[#1A1A1A]"
-                />
-              </div>
-              <div>
-                <Label htmlFor="email" className="text-[#1A1A1A]">Email</Label>
-                <Input 
-                  id="email" 
-                  name="email" 
-                  type="email"
-                  value={formData.email} 
-                  onChange={handleInputChange} 
-                  required 
-                  className="bg-white border-[#CCCCCC] text-[#1A1A1A]"
-                />
-              </div>
-              <div>
-                <Label htmlFor="country" className="text-[#1A1A1A]">Country</Label>
-                <Select 
-                  name="country" 
-                  onValueChange={(value) => setFormData(prev => ({ ...prev, country: value }))} 
-                  required
-                >
-                  <SelectTrigger className="bg-white border-[#CCCCCC] text-[#1A1A1A]">
-                    <SelectValue placeholder="Select your country" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-white text-[#1A1A1A]">
-                    <SelectItem value="us">United States</SelectItem>
-                    <SelectItem value="uk">United Kingdom</SelectItem>
-                    <SelectItem value="ca">Canada</SelectItem>
-                    {/* Add more countries as needed */}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <Label htmlFor="occupation" className="text-[#1A1A1A]">Occupation</Label>
-                <Input 
-                  id="occupation" 
-                  name="occupation" 
-                  value={formData.occupation} 
-                  onChange={handleInputChange} 
-                  required 
-                  className="bg-white border-[#CCCCCC] text-[#1A1A1A]"
-                />
-              </div>
-              <Button type="submit" className="w-full bg-[#23AAC9] hover:bg-[#1C89A2] text-white rounded-full">Register</Button>
-            </form>
+        <div className="bg-[#F5F5F5] py-16 w-full">
+          <div className="max-w-md mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-8 text-[#23AAC9]">Register Now</h2>
+            <Button 
+              size="lg" 
+              className="bg-[#23AAC9] hover:bg-[#1C89A2] text-white rounded-full px-8 py-3"
+              onClick={handleRegisterClick}
+            >
+              Select Event Date
+            </Button>
           </div>
         </div>
       ) : (
@@ -329,7 +219,7 @@ const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({
         isOpen={isDateModalOpen}
         onClose={() => setIsDateModalOpen(false)}
         onDateSelect={handleDateSelect}
-        dates={mockEventDates} // Use mockEventDates here
+        dates={mockEventDates}
       />
     </div>
   );
