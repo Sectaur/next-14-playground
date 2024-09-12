@@ -7,12 +7,7 @@ import Footer from '../(landing-page-components)/Footer';
 import MuxPlayer from '@mux/mux-player-react';
 import Image from 'next/image';
 
-// Navbar Component
 
-
-
-
-// Main Landing Page Component
 const ResectaurLandingPage: React.FC = () => {
   return (
     <div className="font-inter text-[#393939] w-full">
@@ -27,7 +22,7 @@ const ResectaurLandingPage: React.FC = () => {
               <h6 className="text-sm uppercase tracking-wider mb-2">Radiology Course</h6>
               <h1 className="text-2xl md:text-5xl font-bold mb-2 md:mb-4">Neck Ultrasound Anatomy & Scanning Technique Course</h1>
               <p className="text-base md:text-lg mb-4 md:mb-6">A step-by-step interactive online course with ultrasound correlation designed to build confidence in neck ultrasound examinations</p>
-              <Button className="bg-[#23AAC9] hover:bg-[#1D8BA3] text-white rounded-full">Create your Free Account</Button>
+              <Button className="bg-[#23AAC9] hover:bg-[#1D8BA3] text-white hover:text-white rounded-full">Create your Free Account</Button>
               <p className="text-xs mt-2">Register to try free modules before unlocking the full course for $USD499!</p>
             </div>
             <div className="md:w-1/2">
@@ -99,7 +94,7 @@ const ResectaurLandingPage: React.FC = () => {
             <p className="text-xl mb-4">Practitioners often struggle with a lack of confidence when performing neck ultrasound scans.</p>
             <p className="mb-4">This uncertainty stems from the <span className="text-[#23AAC9]">complex anatomy</span> of the neck region, infrequent scanning opportunities, and the absence of a systematic approach. As a result, <span className="text-[#23AAC9]">diagnostic accuracy</span> and efficiency may suffer.</p>
             <p className="mb-6">Our comprehensive Neck Ultrasound Anatomy & Scanning Technique Fundamentals Course offers the key to unlocking your confidence.</p>
-            <Button className="bg-[#23AAC9] hover:bg-[#1D8BA3] text-white rounded-full">Access Free Modules</Button>
+            <Button className="bg-[#23AAC9] hover:bg-[#1D8BA3] text-white hover:text-white rounded-full">Access Free Modules</Button>
             <p className="text-sm mt-2">Register to try free modules before unlocking the full course for $USD499!</p>
           </div>
         </div>
@@ -203,7 +198,7 @@ const ResectaurLandingPage: React.FC = () => {
             <h3 className="text-2xl font-bold mb-4">Meet your Instructor</h3>
             <h4 className="text-xl font-semibold mb-2">Dr. Hament Pandya FRANZCR</h4>
             <p className="mb-4">Dr. Pandya is a UK-trained radiologist with over 18 years of experience in head and neck imaging, who co-founded New Zealand's foremost one-stop neck lump clinic.</p>
-            <Button variant="outline" className="rounded-full text-white bg-[#23AAC9] hover:bg-[#1D8BA3]">About Resectaur</Button>
+            <Button variant="outline" className="rounded-full text-white hover:text-white bg-[#23AAC9] hover:bg-[#1D8BA3]">About Resectaur</Button>
           </div>
           <div className="md:w-1/3">
             <img src="/hp-photo.png" alt="Dr. Hament Pandya" className="rounded-full w-48 h-48 object-cover mx-auto" />
@@ -239,7 +234,7 @@ const ResectaurLandingPage: React.FC = () => {
       <section className="py-16 px-4 text-center">
         <h2 className="text-3xl font-bold mb-4">Register now for free access to course modules.</h2>
         <p className="mb-8">Try before you buy - unlock the full course for just $USD499!</p>
-        <Button className="bg-[#23AAC9] hover:bg-[#1D8BA3] text-white rounded-full">Access Free Modules</Button>
+        <Button className="bg-[#23AAC9] hover:bg-[#1D8BA3] text-white hover:text-white rounded-full">Access Free Modules</Button>
       </section>
 
     <Footer text="© 2024 Resectaur. All rights reserved." />
