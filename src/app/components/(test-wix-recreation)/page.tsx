@@ -45,9 +45,9 @@ const ResectaurLandingPage: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="relative z-10 text-center mt-2">
+        <div className="relative z-10 text-center mt-2 md:hidden">
           <div className="w-16 h-16 mx-auto bg-white bg-opacity-20 rounded-full flex items-center justify-center animate-fadeIn">
-            <svg className="w-10 h-10 text-white animate-bounce" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-10 h-10 text-white" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
               <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
             </svg>
           </div>
@@ -185,7 +185,13 @@ const ResectaurLandingPage: React.FC = () => {
             <p className="font-bold">*RANZCR - 4 Points Awarded</p>
           </div>
           <div className="md:w-1/2">
-            <img src="/neck-scan.png" alt="CME/CPD Certificate" className="rounded-lg shadow-lg" />
+            <Image
+              src="/cpd-certificate-icon.svg"
+              alt="CME/CPD Certificate"
+              width={500}
+              height={300}
+              
+            />
           </div>
         </div>
       </section>
@@ -197,7 +203,7 @@ const ResectaurLandingPage: React.FC = () => {
             <h3 className="text-2xl font-bold mb-4">Meet your Instructor</h3>
             <h4 className="text-xl font-semibold mb-2">Dr. Hament Pandya FRANZCR</h4>
             <p className="mb-4">Dr. Pandya is a UK-trained radiologist with over 18 years of experience in head and neck imaging, who co-founded New Zealand's foremost one-stop neck lump clinic.</p>
-            <Button variant="outline" className="rounded-full">About Resectaur</Button>
+            <Button variant="outline" className="rounded-full text-white bg-[#23AAC9] hover:bg-[#1D8BA3]">About Resectaur</Button>
           </div>
           <div className="md:w-1/3">
             <img src="/hp-photo.png" alt="Dr. Hament Pandya" className="rounded-full w-48 h-48 object-cover mx-auto" />
@@ -206,7 +212,7 @@ const ResectaurLandingPage: React.FC = () => {
       </section>
 
       {/* Section 7 - Testimonials */}
-      <section className="bg-[#F5F5F5] py-16 px-4">
+      <section className="bg-[#1E1E1E] py-16 px-4 text-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold mb-8 text-center">What Our Students Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -215,12 +221,12 @@ const ResectaurLandingPage: React.FC = () => {
               { name: "Lisa, Pathologist", comment: "Fantastic for a pathologist to have the opportunity to learn about head and neck ultrasound, while recapping anatomy of this region." },
               { name: "Laura, Sonographer", comment: "This was exceptionally well presented. I appreciated the detailed explanations, clear and concise instructions and lovely US imaging. Thank you and look forward to your next course!" }
             ].map((testimonial, index) => (
-              <Card key={index} className="bg-white shadow-lg">
+              <Card key={index} className="bg-[#3A3A3A] shadow-lg">
                 <CardContent className="pt-6">
-                  <p className="mb-4">"{testimonial.comment}"</p>
+                  <p className="mb-4 text-gray-200">"{testimonial.comment}"</p>
                   <div className="flex items-center">
-                    <div className="text-yellow-400 mr-2">★★★★★</div>
-                    <p className="font-semibold">{testimonial.name}</p>
+                    <div className="text-[#23aac9] mr-2">★★★★★</div>
+                    <p className="font-semibold text-gray-200">{testimonial.name}</p>
                   </div>
                 </CardContent>
               </Card>
