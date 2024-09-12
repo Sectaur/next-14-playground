@@ -79,10 +79,20 @@ const ResectaurLandingPage: React.FC = () => {
       </section>
 
       {/* Section 3 - Agitate / Solution Section */}
-      <section className="bg-[#F5F5F5] py-16 px-4">
+      <section className="bg-[#272727] text-white py-16 px-4">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 mb-8 md:mb-0">
-            <img src="/parotid.png" alt="Ultrasound demonstration" className="rounded-lg shadow-lg" />
+            <div className="aspect-w-16 aspect-h-9 rounded-lg shadow-lg overflow-hidden">
+              <MuxPlayer
+                streamType="on-demand"
+                playbackId="YOUR_PLAYBACK_ID"
+                metadata={{
+                  video_id: "video-id-123456",
+                  video_title: "Ultrasound Demonstration",
+                  viewer_user_id: "user-id-abc123"
+                }}
+              />
+            </div>
           </div>
           <div className="md:w-1/2 md:pl-12">
             <h2 className="text-3xl font-bold mb-4">Mastering Neck Ultrasound Anatomy: From Uncertainty to Confidence</h2>
@@ -90,6 +100,7 @@ const ResectaurLandingPage: React.FC = () => {
             <p className="mb-4">This uncertainty stems from the <span className="text-[#23AAC9]">complex anatomy</span> of the neck region, infrequent scanning opportunities, and the absence of a systematic approach. As a result, <span className="text-[#23AAC9]">diagnostic accuracy</span> and efficiency may suffer.</p>
             <p className="mb-6">Our comprehensive Neck Ultrasound Anatomy & Scanning Technique Fundamentals Course offers the key to unlocking your confidence.</p>
             <Button className="bg-[#23AAC9] hover:bg-[#1D8BA3] text-white rounded-full">Access Free Modules</Button>
+            <p className="text-sm mt-2">Register to try free modules before unlocking the full course for $USD499!</p>
           </div>
         </div>
       </section>
@@ -166,7 +177,7 @@ const ResectaurLandingPage: React.FC = () => {
       </section>
 
       {/* Section 5 - CME / CPD Certificate */}
-      <section className="bg-[#F5F5F5] py-16 px-4">
+      <section className="bg-[#272727] text-white py-16 px-4">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 mb-8 md:mb-0">
             <h3 className="text-2xl font-bold mb-4">CME | CPD Certificate</h3>
