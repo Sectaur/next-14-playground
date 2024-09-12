@@ -5,6 +5,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/
 import Header from '../(landing-page-components)/Header';
 import Footer from '../(landing-page-components)/Footer';
 import MuxPlayer from '@mux/mux-player-react';
+import Image from 'next/image';
 
 // Navbar Component
 
@@ -18,16 +19,18 @@ const ResectaurLandingPage: React.FC = () => {
      <Header logo="/resectaur-learning-logo.svg" />
       
       {/* Section 1 - Hero Section */}
-      <section className="relative bg-cover bg-center py-16 md:py-24" style={{backgroundImage: "url('/neck-us.png')"}}>
+      <section className="relative bg-cover bg-center py-8 md:py-24 flex flex-col" style={{backgroundImage: "url('/neck-us.png')"}}>
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div className="container mx-auto relative z-10">
+        <div className="container mx-auto relative z-10 flex-grow">
           <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 text-white px-4 md:pr-8">
-              <h1 className="text-3xl md:text-5xl font-bold mb-4">Neck Ultrasound Anatomy & Scanning Technique Course</h1>
-              <p className="text-lg mb-6">A step-by-step interactive online course with ultrasound correlation designed to build confidence in neck ultrasound examinations</p>
+            <div className="md:w-1/2 text-white px-4 md:pr-8 mb-4 md:mb-0">
+              <h6 className="text-sm uppercase tracking-wider mb-2">Radiology Course</h6>
+              <h1 className="text-2xl md:text-5xl font-bold mb-2 md:mb-4">Neck Ultrasound Anatomy & Scanning Technique Course</h1>
+              <p className="text-base md:text-lg mb-4 md:mb-6">A step-by-step interactive online course with ultrasound correlation designed to build confidence in neck ultrasound examinations</p>
               <Button className="bg-[#23AAC9] hover:bg-[#1D8BA3] text-white rounded-full">Create your Free Account</Button>
+              <p className="text-xs mt-2">Register to try free modules before unlocking the full course for $USD499!</p>
             </div>
-            <div className="md:w-1/2 mt-8 md:mt-0">
+            <div className="md:w-1/2">
               <div className="aspect-w-16 aspect-h-9">
                 <MuxPlayer
                   streamType="on-demand"
@@ -42,10 +45,18 @@ const ResectaurLandingPage: React.FC = () => {
             </div>
           </div>
         </div>
+        <div className="relative z-10 text-center mt-2">
+          <div className="w-16 h-16 mx-auto bg-white bg-opacity-20 rounded-full flex items-center justify-center animate-fadeIn">
+            <svg className="w-10 h-10 text-white animate-bounce" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+              <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+          </div>
+        </div>
       </section>
 
       {/* Section 2 - Key Benefits */}
       <section className="py-16 px-4">
+        <h2 className="text-2xl font-bold text-black text-center mb-8">Optimise your approach to head and neck ultrasound...</h2>
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             { title: "Understand Neck Anatomy", description: "Deconstruct complex anatomy into fundamental building blocks for a deep understanding, moving beyond rote learning." },
@@ -54,7 +65,9 @@ const ResectaurLandingPage: React.FC = () => {
           ].map((benefit, index) => (
             <Card key={index} className="bg-white shadow-lg">
               <CardHeader>
-                <div className="w-12 h-12 bg-[#23AAC9] rounded-full mb-4"></div>
+                <div className="flex justify-center items-center mb-4">
+                  <Image src="/resectaur-brandmark.svg" alt="Resectaur Brandmark" width={150} height={150} />
+                </div>
                 <h3 className="text-xl font-semibold">{benefit.title}</h3>
               </CardHeader>
               <CardContent>
@@ -138,11 +151,11 @@ const ResectaurLandingPage: React.FC = () => {
               }
             ].map((part, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger>{part.title}</AccordionTrigger>
+                <AccordionTrigger className="text-left">{part.title}</AccordionTrigger>
                 <AccordionContent>
                   <ul className="list-disc pl-6">
                     {part.units.map((unit, unitIndex) => (
-                      <li key={unitIndex} className="mb-2">{unit}</li>
+                      <li key={unitIndex} className="mb-2 text-left">{unit}</li>
                     ))}
                   </ul>
                 </AccordionContent>
