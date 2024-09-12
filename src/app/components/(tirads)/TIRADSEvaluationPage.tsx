@@ -14,7 +14,7 @@ const TIRADSEvaluationPage: React.FC = () => {
       <div className="w-1/2 p-4">
         <Card className="bg-gray-800 border-gray-700">
           <CardContent className="p-4">
-            <h2 className="text-2xl font-bold mb-4 text-white">Thyroid Nodule Image</h2>
+            <h2 className="text-2xl font-bold mb-4 text-white">Thyroid Nodule Image Panel</h2>
             <div className="relative w-full h-[calc(100vh-200px)]">
               <Image
                 src="/thyroid-nodule.jpg"

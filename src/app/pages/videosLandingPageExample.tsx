@@ -12,7 +12,7 @@ const VideosLandingPageExample: React.FC = () => {
 
   return (
     <LandingPageTemplate
-      headerLogo="/ResectaurLearningLogo.svg"
+      headerLogo="/resectaur-learning-logo.svg"
       heroSection={{
         title: "Master Radiology with Interactive Learning",
         description: "Join our upcoming webinar: 'Advanced Techniques in CT Interpretation'",

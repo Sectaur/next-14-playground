@@ -30,7 +30,7 @@ const ThyroidImagingLabExample: React.FC = () => {
     <div className="min-h-screen bg-white">
       <LearningLabLandingTemplate 
         onSubscribe={() => setIsModalOpen(true)} 
-        headerLogo={"/ResectaurLearningLogo.svg"}
+        headerLogo={"/resectaur-learning-logo.svg"}
       />
       
       <main className="w-full px-4 sm:px-6 lg:px-8 py-6">

@@ -87,7 +87,7 @@ const ThyroidRadiologyLabDashboard: React.FC = () => {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
               <Image
-                src="/ResectaurLearningLogo.svg"
+                src="/resectaur-learning-logo.svg"
                 alt="Dr. John Doe"
                 width={250}
                 height={180}

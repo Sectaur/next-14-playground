@@ -17,7 +17,7 @@ import {
 const HeroCarouselExample: React.FC = () => {
   return (
     <LandingPageCarouselTemplate
-      headerLogo="/ResectaurLearningLogo.svg"
+      headerLogo="/resectaur-learning-logo.svg"
       heroSections={{
         heroSections: [
           {
