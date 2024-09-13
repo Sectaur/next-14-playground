@@ -1,7 +1,7 @@
 import React from 'react';
 import CourseSalesPageTemplate from '../components/(landing-page-templates)/CourseSalesPageTemplate';
 
-const CourseLandingPageExample: React.FC = () => {
+const CourseSalesPageExample: React.FC = () => {
   const mockData = {
     headerLogo: "/resectaur-learning-logo.svg",
     heroProps: {
@@ -123,4 +123,4 @@ const CourseLandingPageExample: React.FC = () => {
   return <CourseSalesPageTemplate {...mockData} />;
 };
 
-export default CourseLandingPageExample;
+export default CourseSalesPageExample;
