@@ -7,7 +7,7 @@ import Footer from '../(landing-page-components)/Footer';
 import MuxPlayer from '@mux/mux-player-react';
 import Image from 'next/image';
 
-
+// Main Landing Page Component
 const ResectaurLandingPage: React.FC = () => {
   return (
     <div className="font-inter text-[#393939] w-full">
