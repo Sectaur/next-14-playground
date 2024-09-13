@@ -25,39 +25,41 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
     <header className="bg-black shadow-sm sticky top-0 z-50">
       <nav className="container mx-auto px-4 py-3 flex justify-between items-center">
         <div className="flex items-center">
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-[#23AAC9] rounded-full mr-2"
+          <div className="md:hidden">
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="text-[#23AAC9] rounded-full mr-2"
+                >
+                  {isOpen ? <X size={24} /> : <Menu size={24} />}
+                </Button>
+              </SheetTrigger>
+              <SheetContent
+                side="left"
+                className="bg-[#272727] text-white w-[300px]"
               >
-                {isOpen ? <X size={24} /> : <Menu size={24} />}
-              </Button>
-            </SheetTrigger>
-            <SheetContent
-              side="left"
-              className="bg-[#272727] text-white w-[300px]"
-            >
-              <div className="flex flex-col space-y-4 mt-8">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    passHref
-                  >
-                    <Button
-                      variant="ghost"
-                      className="justify-start text-[#23AAC9] rounded-full"
-                      onClick={() => setIsOpen(false)}
+                <div className="flex flex-col space-y-4 mt-8">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      passHref
                     >
-                      {item.name}
-                    </Button>
-                  </Link>
-                ))}
-              </div>
-            </SheetContent>
-          </Sheet>
+                      <Button
+                        variant="ghost"
+                        className="justify-start text-[#23AAC9] rounded-full"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {item.name}
+                      </Button>
+                    </Link>
+                  ))}
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
           <Image
             src={logo}
             alt="Learning Logo"
