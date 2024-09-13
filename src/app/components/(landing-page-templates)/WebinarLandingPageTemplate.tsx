@@ -32,6 +32,14 @@ export interface WebinarLandingPageProps {
   hostData: HostData;
   webinarData: WebinarData;
   headerLogo: string; // Add this line
+  registrationForm: {
+    fields: Array<{
+      name: string;
+      label: string;
+      type: string;
+      required: boolean;
+    }>;
+  };
 }
 
 const WebinarLandingPageTemplate: React.FC<WebinarLandingPageProps> = ({ 

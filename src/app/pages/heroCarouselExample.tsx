@@ -21,7 +21,7 @@ const HeroCarouselExample: React.FC = () => {
       heroSections={{
         heroSections: [
           {
-            title: "Master Radiology with Interactive Learning",
+            title: "Webinar: Master Radiology with Interactive Learning",
             description:
               "Join our upcoming webinar: 'Advanced Techniques in CT Interpretation'",
             ctaText: "Learn more",

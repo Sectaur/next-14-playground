@@ -18,7 +18,7 @@ const WebinarExample: React.FC = () => {
       imageUrl: "/hp-photo.png"
     },
     webinarData: {
-      title: "Advanced Techniques in Head and Neck MRI",
+      title: "Webinar: Advanced Techniques in Head and Neck MRI",
       description: "Join us for an in-depth exploration of cutting-edge MRI interpretation techniques in head and neck imaging.",
       benefits: [
         {

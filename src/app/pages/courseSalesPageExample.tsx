@@ -5,9 +5,9 @@ const CourseSalesPageExample: React.FC = () => {
   const mockData = {
     headerLogo: "/resectaur-learning-logo.svg",
     heroProps: {
-      backgroundImage: "/neck-us.png",
+      backgroundImage: "/mri-brain.png",
       subtitle: "Radiology Course",
-      title: "Master Radiology: Comprehensive Online Training",
+      title: "Course: Master Radiology: Comprehensive Online Training",
       description: "A step-by-step interactive online course with ultrasound correlation designed to build confidence in neck ultrasound examinations",
       buttonText: "Create your Free Account",
       buttonAction: () => console.log("Enroll button clicked"),

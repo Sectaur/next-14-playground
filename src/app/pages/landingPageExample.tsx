@@ -14,7 +14,7 @@ const LandingPageExample: React.FC = () => {
     <LandingPageTemplate
       headerLogo="/resectaur-learning-logo.svg"
       heroSection={{
-        title: "Master Radiology with Interactive Learning",
+        title: "Webinar: Master Radiology with Interactive Learning",
         description: "Join our upcoming webinar: 'Advanced Techniques in CT Interpretation'",
         ctaText: "Learn more",
         backgroundImage: "/neck-us.png",

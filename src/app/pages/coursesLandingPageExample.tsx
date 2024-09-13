@@ -22,12 +22,12 @@ const CoursesLandingPageExample: React.FC = () => {
         backgroundImage: "/thyroid-nodule.jpg",
         videoPlaybackId: "YOUR_MUX_PLAYBACK_ID",
       }}
-      featuresTitle="Featured Courses"
+      featuresTitle="Explore Courses"
       features={[
         {
           id: 1,
           icon: <BookOpen size={24} />,
-          title: "Thyroid Ultrasound Mastery",
+          title: "Course: Thyroid Ultrasound Mastery",
           description: "Learn to interpret thyroid nodules with confidence",
           imageSrc: "/thyroid-nodule.jpg",
           action: () => router.push('/course'),
@@ -35,7 +35,7 @@ const CoursesLandingPageExample: React.FC = () => {
         {
           id: 2,
           icon: <BookOpen size={24} />,
-          title: "Advanced MRI Techniques",
+          title: "Course: Advanced MRI Techniques",
           description: "Explore cutting-edge MRI protocols and interpretation",
           imageSrc: "/parotid.png",
           action: () => router.push('/course'),
@@ -43,7 +43,7 @@ const CoursesLandingPageExample: React.FC = () => {
         {
           id: 3,
           icon: <BookOpen size={24} />,
-          title: "Pediatric Radiology Essentials",
+          title: "Course: Pediatric Radiology Essentials",
           description: "Specialized imaging techniques for pediatric patients",
           imageSrc: "/thyroid-nodule.jpg",
           action: () => router.push('/course'),
@@ -51,7 +51,7 @@ const CoursesLandingPageExample: React.FC = () => {
         {
           id: 4,
           icon: <BookOpen size={24} />,
-          title: "Interventional Radiology Fundamentals",
+          title: "Course: Interventional Radiology Fundamentals",
           description: "Core skills for minimally invasive procedures",
           imageSrc: "/parotid.png",
           action: () => router.push('/course'),
@@ -59,7 +59,7 @@ const CoursesLandingPageExample: React.FC = () => {
         {
           id: 5,
           icon: <BookOpen size={24} />,
-          title: "Breast Imaging and Intervention",
+          title: "Course: Breast Imaging and Intervention",
           description: "Comprehensive approach to breast cancer detection",
           imageSrc: "/thyroid-nodule.jpg",
           action: () => router.push('/course'),
@@ -67,7 +67,7 @@ const CoursesLandingPageExample: React.FC = () => {
         {
           id: 6,
           icon: <BookOpen size={24} />,
-          title: "Musculoskeletal Imaging",
+          title: "Course: Musculoskeletal Imaging",
           description: "Detailed analysis of bone and joint pathologies",
           imageSrc: "/parotid.png",
           action: () => router.push('/course'),
