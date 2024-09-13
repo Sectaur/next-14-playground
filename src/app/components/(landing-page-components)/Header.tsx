@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import Link from 'next/link';
 
@@ -18,7 +19,11 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
     { name: "Videos", href: "/videos" },
     { name: "Webinar", href: "/webinar" },
     { name: "Lab", href: "/learningLab" },
-    { name: "TI-RADS", href: "/tirads" },
+    { name: "TI-RADS", href: "/tirads", dropdownItems: [
+      { name: "Overview", href: "/" },
+      { name: "Calculator", href: "/tirads" },
+      { name: "Videos", href: "/videos" },
+    ]},
   ];
 
   return (
@@ -70,18 +75,30 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
         </div>
         <div className="hidden md:flex space-x-4">
           {navItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              passHref
-            >
-              <Button
-                variant="ghost"
-                className="text-[#23AAC9] rounded-full hover:bg-[#e6e8e8] hover:text-[#23AAC9] hover:border-1 hover:border-[#23AAC9] transition-colors duration-300 ease-in-out"
-              >
-                {item.name}
-              </Button>
-            </Link>
+            item.dropdownItems ? (
+              <DropdownMenu key={item.name}>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="text-[#23AAC9] rounded-full hover:bg-[#e6e8e8] hover:text-[#23AAC9] hover:border-1 hover:border-[#23AAC9] transition-colors duration-300 ease-in-out">
+                    {item.name} <ChevronDown className="ml-1 h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  {item.dropdownItems.map((dropdownItem) => (
+                    <DropdownMenuItem key={dropdownItem.name}>
+                      <Link href={dropdownItem.href} className="w-full">
+                        {dropdownItem.name}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link key={item.name} href={item.href} passHref>
+                <Button variant="ghost" className="text-[#23AAC9] rounded-full hover:bg-[#e6e8e8] hover:text-[#23AAC9] hover:border-1 hover:border-[#23AAC9] transition-colors duration-300 ease-in-out">
+                  {item.name}
+                </Button>
+              </Link>
+            )
           ))}
         </div>
         <Button
