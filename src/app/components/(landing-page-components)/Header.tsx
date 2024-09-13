@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, LogOut } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -12,6 +12,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ logo }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navItems = [
     { name: "Home", href: "/" },
@@ -26,6 +27,14 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
   
    
   ];
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
 
   return (
     <header className="bg-black shadow-sm sticky top-0 z-50">
@@ -102,12 +111,34 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
             )
           ))}
         </div>
-        <Button
-          variant="outline"
-          className="bg-black text-[#23AAC9] border-[#23AAC9] hover:bg-[#23AAC9] hover:text-[#272727] rounded-full transition-colors duration-300 text-sm px-3 py-1"
-        >
-          Login
-        </Button>
+        {isLoggedIn ? (
+          <div className="relative group">
+            <Image
+              src="/hp-photo.png"
+              alt="Profile"
+              width={40}
+              height={40}
+              className="rounded-full cursor-pointer w-10 h-10 object-cover"
+            />
+            <div className="absolute right-0 mt-2 w-48 bg-[#272727] rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+              <button
+                onClick={handleLogout}
+                className="w-full text-left px-4 py-2 text-sm text-[#23AAC9] hover:bg-[#393939] flex items-center transition-colors duration-300"
+              >
+                <LogOut className="mr-2" size={16} />
+                Logout
+              </button>
+            </div>
+          </div>
+        ) : (
+          <Button
+            variant="outline"
+            className="bg-black text-[#23AAC9] border-[#23AAC9] hover:bg-[#23AAC9] hover:text-[#272727] rounded-full transition-colors duration-300 text-sm px-3 py-1"
+            onClick={handleLogin}
+          >
+            Login
+          </Button>
+        )}
       </nav>
     </header>
   );
