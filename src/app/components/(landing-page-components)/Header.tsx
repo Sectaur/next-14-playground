@@ -57,19 +57,47 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
               >
                 <div className="flex flex-col space-y-4 mt-8">
                   {navItems.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      passHref
-                    >
-                      <Button
-                        variant="ghost"
-                        className="justify-start text-[#23AAC9] rounded-full"
-                        onClick={() => setIsOpen(false)}
+                    item.dropdownItems ? (
+                      <div key={item.name} className="space-y-2">
+                        <Button
+                          variant="ghost"
+                          className="justify-start text-[#23AAC9] rounded-full w-full"
+                        >
+                          {item.name}
+                        </Button>
+                        <div className="pl-4 space-y-2">
+                          {item.dropdownItems.map((dropdownItem) => (
+                            <Link
+                              key={dropdownItem.name}
+                              href={dropdownItem.href}
+                              passHref
+                            >
+                              <Button
+                                variant="ghost"
+                                className="justify-start text-[#23AAC9] rounded-full w-full"
+                                onClick={() => setIsOpen(false)}
+                              >
+                                {dropdownItem.name}
+                              </Button>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        passHref
                       >
-                        {item.name}
-                      </Button>
-                    </Link>
+                        <Button
+                          variant="ghost"
+                          className="justify-start text-[#23AAC9] rounded-full w-full"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {item.name}
+                        </Button>
+                      </Link>
+                    )
                   ))}
                 </div>
               </SheetContent>
