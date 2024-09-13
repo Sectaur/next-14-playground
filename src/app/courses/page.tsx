@@ -1,14 +1,8 @@
-"use client";
+import React from 'react';
+import CoursesLandingPageExample from '../pages/coursesLandingPageExample';
 
-import React from "react";
-import CourseSalesPageExample from "../pages/courseSalesPageExample";
+const CoursesPage: React.FC = () => {
+  return <CoursesLandingPageExample />;
+};
 
-
-
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
-      <CourseSalesPageExample />
-    </main>
-  );
-}
+export default CoursesPage;
