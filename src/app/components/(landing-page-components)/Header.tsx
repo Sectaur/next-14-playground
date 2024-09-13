@@ -16,14 +16,15 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "Courses", href: "/courses" },
-    { name: "Videos", href: "/videos" },
-    { name: "Webinar", href: "/webinar" },
-    { name: "Lab", href: "/learningLab" },
-    { name: "TI-RADS", href: "/tirads", dropdownItems: [
-      { name: "Overview", href: "/" },
-      { name: "Calculator", href: "/tirads" },
-      { name: "Videos", href: "/videos" },
+    { name: "Content", href: "/tirads", dropdownItems: [
+      { name: "videos", href: "/videos" },
+      { name: "TI-RADS", href: "/tirads" },
+      { name: "Webinar", href: "/webinar" },
+      { name: "Labs", href: "/learningLab" },
     ]},
+    { name: "About", href: "/about" },
+  
+   
   ];
 
   return (
