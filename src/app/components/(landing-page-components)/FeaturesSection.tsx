@@ -57,7 +57,7 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({
   onCardClick,
 }) => {
   return (
-    <section className="w-full bg-[#070707] py-12 md:py-16 lg:py-20">
+    <section className="w-full bg-black py-12 md:py-16 lg:py-20">
       <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 max-w-8xl mx-auto">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 md:mb-12 text-center text-white">{title}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 lg:gap-10">

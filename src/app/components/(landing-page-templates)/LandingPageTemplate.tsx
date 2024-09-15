@@ -62,7 +62,7 @@ const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#070707] text-white w-full">
+    <div className="flex flex-col min-h-screen bg-black text-white w-full">
       <Header logo={headerLogo} />
       {showHeroSection && <HeroSection {...heroSection} onCtaClick={onCtaClick} />}
       <div className="flex-grow w-full">
