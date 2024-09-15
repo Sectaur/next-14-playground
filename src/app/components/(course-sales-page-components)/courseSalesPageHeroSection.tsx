@@ -27,8 +27,8 @@ const CourseSalesPageHeroSection: React.FC<HeroSectionProps> = ({
     <section className="relative bg-cover bg-center py-8 md:py-24 flex flex-col" style={{backgroundImage: `url(${backgroundImage})`}}>
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       <div className="container mx-auto relative z-10 flex-grow">
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 text-white px-4 md:pr-8 mb-4 md:mb-0">
+        <div className="flex flex-col md:flex-row items-center md:space-x-8">
+          <div className="md:w-1/2 text-white px-4 md:pr-8 mb-8 md:mb-0 bg-black bg-opacity-60 rounded-lg p-6">
             <h6 className="text-sm uppercase tracking-wider mb-2">{subtitle}</h6>
             <h1 className="text-2xl md:text-5xl font-bold mb-2 md:mb-4">{title}</h1>
             <p className="text-base md:text-lg mb-4 md:mb-6">{description}</p>
