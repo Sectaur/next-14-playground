@@ -19,9 +19,7 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
     { name: "Courses", href: "/courses" },
     { name: "Content", href: "/tirads", dropdownItems: [
       { name: "Case Tutorials", href: "/videos" },
-      { name: "TI-RADS", href: "/tirads" },
-      { name: "Webinar", href: "/webinar" },
-      { name: "Labs", href: "/learningLab" },
+      
     ]},
     { name: "About", href: "/about" },
   
