@@ -78,13 +78,69 @@ const VideosLandingPageExample: React.FC = () => {
           imageSrc: "/mri-brain.png",
           action: () => router.push('/video/7'),
         },
+        {
+          id: 8,
+          icon: <Play size={24} />,
+          title: "Thyroid Nodule Evaluation",
+          description: "Female aged 50 with thyroid enlargement",
+          imageSrc: "/parotid.png",
+          action: () => router.push('/video/8'),
+        },
+        {
+          id: 9,
+          icon: <Play size={24} />,
+          title: "Stroke Imaging Techniques",
+          description: "Male aged 70 with sudden onset weakness",
+          imageSrc: "/mri-brain.png",
+          action: () => router.push('/video/9'),
+        },
+        {
+          id: 10,
+          icon: <Play size={24} />,
+          title: "Liver Lesion Characterization",
+          description: "Female aged 65 with incidental liver finding",
+          imageSrc: "/parotid.png",
+          action: () => router.push('/video/10'),
+        },
+        {
+          id: 11,
+          icon: <Play size={24} />,
+          title: "Pediatric Brain MRI",
+          description: "Child aged 8 with developmental delay",
+          imageSrc: "/mri-brain.png",
+          action: () => router.push('/video/11'),
+        },
+        {
+          id: 12,
+          icon: <Play size={24} />,
+          title: "Breast Cancer Screening",
+          description: "Female aged 55 for routine mammogram",
+          imageSrc: "/parotid.png",
+          action: () => router.push('/video/12'),
+        },
+        {
+          id: 13,
+          icon: <Play size={24} />,
+          title: "Spinal Cord Compression",
+          description: "Male aged 48 with back pain and weakness",
+          imageSrc: "/mri-brain.png",
+          action: () => router.push('/video/13'),
+        },
+        {
+          id: 14,
+          icon: <Play size={24} />,
+          title: "Pulmonary Embolism CT",
+          description: "Female aged 39 with shortness of breath",
+          imageSrc: "/parotid.png",
+          action: () => router.push('/video/14'),
+        },
       ]}
       ctaTitle="Ready to Enhance Your Radiology Skills?"
       ctaDescription="Join our Learning platform today and take your expertise to the next level."
       ctaButtonText="Get Started for Free"
       footerText="© 2024 Resectaur. All rights reserved."
       onCtaClick={handleCtaClick}
-      showHeroSection={false}
+      showHeroSection={true}
     />
   );
 };
