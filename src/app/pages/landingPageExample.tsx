@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from 'next/navigation';
 import LandingPageTemplate from "../components/(landing-page-templates)/LandingPageTemplate";
-import { Play, FileQuestion, Activity, Book, Users, Award, BarChart, Zap, Headphones, Video } from "lucide-react";
+import { Play, FileQuestion, Activity, Book, Users, Award, BarChart, Zap, Headphones, Video, Calculator } from "lucide-react";
 
 const LandingPageExample: React.FC = () => {
   const router = useRouter();
@@ -40,7 +40,7 @@ const LandingPageExample: React.FC = () => {
         },
         {
           id: 3,
-          icon: <Award size={24} />,
+          icon: <Calculator size={24} />,
           title: "TI-RADS Practice Cases",
           description:
             "Improve your skills with Thyroid Imaging Reporting and Data System cases.",
